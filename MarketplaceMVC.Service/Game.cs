@@ -13,6 +13,10 @@ namespace MarketplaceMVC.Service
     public interface IGameService
     {
         void Delete(Game game);
+
+        IEnumerable<Game> GetAllGames();
+        Task<List<Game>> GetAllGamesAsync();
+
         IEnumerable<Game> GetGames(Expression<Func<Game, bool>> where, params Expression<Func<Game, object>>[] includes);
         Task<List<Game>> GetGamesAsync(Expression<Func<Game, bool>> where, params Expression<Func<Game, object>>[] includes);
         
@@ -38,10 +42,15 @@ namespace MarketplaceMVC.Service
 
         #region IGameService Members
 
-        public IEnumerable<Game> GetGames()
+        public IEnumerable<Game> GetAllGames()
         {
             var games = gamesRepository.GetAll();
             return games;
+        }
+
+        public async Task<List<Game>> GetAllGamesAsync()
+        {
+            return await gamesRepository.GetAllAsync();
         }
 
 

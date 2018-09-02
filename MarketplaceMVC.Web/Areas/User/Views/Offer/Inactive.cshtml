@@ -1,0 +1,30 @@
+﻿@model MarketplaceMVC.Web.Areas.User.Models.Offer.OfferListViewModel
+@{
+    ViewBag.Title = "GetActive";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("_Menu"); }
+@{ Html.RenderPartial("_OfferMenu", Model); }
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var offer in Model.Offers)
+        {
+            <tr>
+                <th scope="row">1</th>
+                <td>@offer.Header</td>
+                <td>@offer.ShortUrl</td>
+                <td>@offer.Price</td>
+            </tr>
+        }
+
+    </tbody>
+</table>

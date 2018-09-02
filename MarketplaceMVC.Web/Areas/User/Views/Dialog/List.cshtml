@@ -1,0 +1,32 @@
+﻿@model MarketplaceMVC.Web.Areas.User.Models.Dialog.DialogListViewModel
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{ Html.RenderPartial("_Menu"); }
+@{ Html.RenderPartial("_DialogMenu", Model); }
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var offer in Model.Dialogs)
+        {
+            <tr>
+                <th scope="row">1</th>
+                <td>@offer.Companion.Name</td>
+                <td>@offer.CountOfNewMessages</td>
+                <td>@offer.</td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+

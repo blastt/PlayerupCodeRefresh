@@ -1,4 +1,5 @@
 ﻿using MarketplaceMVC.Web;
+using MarketplaceMVC.Web.Automapper;
 using Microsoft.Owin;
 using Owin;
 using System;
@@ -13,6 +14,7 @@ namespace MarketplaceMVC.Web
     {
         public void Configuration(IAppBuilder app)
         {
+            AutoMapperConfiguration.Configure();
             ConfigureAutofac(app);
             ConfigureAuth(app);
         }

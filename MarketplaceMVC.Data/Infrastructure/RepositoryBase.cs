@@ -191,7 +191,7 @@ namespace MarketplaceMVC.Data.Infrastructure
 
         public IEnumerable<T> GetMany(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] includes)
         {
-            var set = dbSet.AsQueryable();
+            var set = dbSet.Where(where);
             foreach (var include in includes)
             {
                 set = set.Include(include);
@@ -201,7 +201,7 @@ namespace MarketplaceMVC.Data.Infrastructure
 
         public Task<List<T>> GetManyAsync(Expression<Func<T, bool>> where, params Expression<Func<T, object>>[] includes)
         {
-            var set = dbSet.AsQueryable();
+            var set = dbSet.Where(where);
             foreach (var include in includes)
             {
                 set = set.Include(include);

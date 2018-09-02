@@ -1,0 +1,49 @@
+﻿using AutoMapper;
+using MarketplaceMVC.Model.Models;
+using MarketplaceMVC.Web.Models.Offer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace MarketplaceMVC.Web.Automapper
+{
+    public class DomainToViewModelMappingProfile : Profile
+    {
+        public override string ProfileName
+        {
+            get { return "DomainToViewModelMappings"; }
+        }
+
+        private string GetSplitedUrl(string str, char ch, int number)
+        {
+            try
+            {
+                return str.Split(ch)[number].ToString();
+            }
+            catch (Exception)
+            {
+
+                return "Url скрыт";
+            }
+            
+        }
+
+        public DomainToViewModelMappingProfile()
+        {
+            CreateMap<Offer, OfferViewModel>()
+                .ForMember(o => o.Header, map => map.MapFrom(vm => vm.Header))
+               .ForMember(o => o.SellerPaysMiddleman, map => map.MapFrom(vm => vm.SellerPaysMiddleman))
+               .ForMember(o => o.IsBanned, map => map.MapFrom(vm => vm.IsBanned))
+               .ForMember(o => o.PersonalAccount, map => map.MapFrom(vm => vm.PersonalAccount))
+               .ForMember(o => o.Url, map => map.MapFrom(vm => vm.Url))
+               .ForMember(o => o.Discription, map => map.MapFrom(vm => vm.Discription))
+               .ForMember(o => o.CreatedAccountDate, map => map.MapFrom(vm => vm.CreatedAccountDate))
+               .ForMember(o => o.Price, map => map.MapFrom(vm => vm.Price))
+                .ForMember(o => o.ShortUrl, map => map.MapFrom((vm) => GetSplitedUrl(vm.Url,'/',4)));
+
+            CreateMap<Offer, DetailsOfferViewModel>()
+                .ForMember(o => o.ShortUrl, map => map.MapFrom((vm) => GetSplitedUrl(vm.Url, '/', 4)));
+        }
+    }
+}

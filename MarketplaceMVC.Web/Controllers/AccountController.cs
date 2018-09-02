@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
+using MarketplaceMVC.Service;
 
 namespace MarketplaceMVC.Web.Controllers
 {
@@ -17,9 +18,11 @@ namespace MarketplaceMVC.Web.Controllers
     {
         private ApplicationUserManager _userManager;
         private ApplicationSignInManager _signInManager;
+        private readonly IUserProfileService userProfileService;
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserProfileService userProfileService)
         {
+            this.userProfileService = userProfileService;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -124,7 +127,11 @@ namespace MarketplaceMVC.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+
+                var userProfile = new UserProfile();
+                var user = new User { UserName = model.Email, Email = model.Email, UserProfile = userProfile };
+                userProfile.Id = user.Id;
+                userProfile.Name = user.UserName;
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

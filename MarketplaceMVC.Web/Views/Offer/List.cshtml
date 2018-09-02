@@ -1,0 +1,22 @@
+﻿@model MarketplaceMVC.Web.Models.Offer.OfferListViewModel
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @{Html.RenderPartial("_SearchPanel", Model.Games);}
+
+        <div  class="col-lg-9">
+            <div id="offers">
+                @{Html.RenderPartial("_OfferTable", Model.Offers);}
+            </div>
+           
+        </div>
+
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    }

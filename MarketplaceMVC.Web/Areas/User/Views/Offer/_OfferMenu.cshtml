@@ -1,0 +1,8 @@
+﻿@model MarketplaceMVC.Web.Areas.User.Models.Offer.OfferListViewModel
+
+<ul class="account-inner-list" id="account-inner-list">
+
+    <li class="account-inner-menu-item">@Html.ActionLink("Активные (" + Model.CountOfActive +")", "Active", "Offer", null, new { @class = "account-inner-menu-link " })</li>
+    <li class="account-inner-menu-item">@Html.ActionLink("Неактивные (" + Model.CountOfInactive + ")", "InActive", "Offer", null, new { @class = "account-inner-menu-link " })</li>
+    <li class="account-inner-menu-item">@Html.ActionLink("Закрытые (" + Model.CountOfClosed + ")", "Closed", "Offer", null, new { @class = "account-inner-menu-link " })</li>
+</ul>

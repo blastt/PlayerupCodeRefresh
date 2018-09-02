@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 1000px;
 }
 
 .nav-register{
@@ -37,5 +37,91 @@ textarea {
 .navbar {
     padding: 0.75rem 1rem;
 }
+.header-table {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: transparent;
+}
+.header-table td {
+    width: 450px;
+    border-bottom: 0px;
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 0px;
+}
 
+.description-table td {
+    padding: 0 0.75rem;
+    vertical-align: top;
+    border-top: 1px;
+    color: black
+}
+
+.description-table-row{
+    padding: 0 0.75rem;
+    vertical-align: top;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.table th, .table td {
+    vertical-align: top;
+    border-top: 0px solid #dee2e6;
+}
+.text-shadow {
+    width: 75%;
+    white-space: nowrap; /* Отменяем перенос текста */
+    overflow: hidden; /* Обрезаем содержимое */
+    position: relative; /* Относительное позиционирование */
+}
+
+    .text-shadow::after {
+        content: ''; /* Выводим элемент */
+        position: absolute; /* Абсолютное позиционирование */
+        right: 0;
+        top: 0; /* Положение элемента */
+        width: 40px; /* Ширина градиента*/
+        height: 100%; /* Высота родителя */
+        /* Градиент */
+        background: -moz-linear-gradient(left, rgba(255,255,255, 0.2), #fff 100%);
+        background: -webkit-linear-gradient(left, rgba(255,255,255, 0.2), #fff 100%);
+        background: -o-linear-gradient(left, rgba(255,255,255, 0.2), #fff 100%);
+        background: -ms-linear-gradient(left, rgba(255,255,255, 0.2), #fff 100%);
+        background: linear-gradient(to right, rgba(255,255,255, 0.2), #fff 100%);
+    }
+
+
+.table tbody + tbody {
+    border-top: 1px solid #dee2e6;
+}
+
+.td-description{
+    max-width: 500px
+}
+
+.clickable{
+    text-decoration: none
+}
+
+.clickable:hover {
+    text-decoration: none
+}
+
+.tr-options{
+    color:black
+}
+
+
+ul.account-list li {
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    border: 1px solid #000; /* Рамка вокруг текста */
+    padding: 3px; /* Поля вокруг текста */
+}
+
+ul.account-inner-list li {
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    border: 1px solid #000; /* Рамка вокруг текста */
+    padding: 1px; /* Поля вокруг текста */
+}
 

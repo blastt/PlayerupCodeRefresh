@@ -2,5 +2,6 @@
     ViewBag.Title = "Home Page";
 }
 
-<button type="button" class="btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-up"></i> Купить аккаунт</button>
-<button type="button" class="btn btn-secondary btn-lg"><i class="fas fa-arrow-alt-circle-down"></i> Продать аккаунт</button>
+
+<a href="@Url.Action("List", "Offer")" class="btn btn-primary btn-lg"><i class="fas fa-arrow-alt-circle-up"></i> Купить аккаунт</a>
+<a href="@Url.Action("Create", "Offer")" class="btn btn-secondary btn-lg"><i class="fas fa-arrow-alt-circle-down"></i> Продать аккаунт</a>
