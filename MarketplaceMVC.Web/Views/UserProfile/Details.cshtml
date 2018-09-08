@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-4">
+        <div class="card-custom">
+            <div class="text-center mb-2">
+                <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 96px" alt="Alternate Tex" />
+            </div>
+            <div class="text-center font-weight-bold">
+                Blast
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary" href="#"><i class="fas fa-envelope"></i> Написать</a>
+            </div>
+            <table class="table" style="font-size: 14px">
+                <tr>
+                    <td>Дата</td>
+                    <td class="text-right">12.12.2017</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-star mr-2"></i>Рейтинг</td>
+                    <td class="text-right">12</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-trophy mr-2"></i>Успешных сделок</td>
+                    <td class="text-right">12</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-grin-alt mr-2"></i>Всего отзывов</td>
+                    <td class="text-right">12</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-thumbs-up mr-2"></i>Позитивные отзывы</td>
+                    <td class="text-right">12</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-thumbs-down mr-2"></i>Негативные отзывы</td>
+                    <td class="text-right">2</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="col-lg-8">
+
+        <div class="card-custom-details">
+            <div class="row" style="margin-left: -20px; margin-right: -20px">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <ul class="ul-details" style="margin: auto">
+                            <li>
+                                <a class="active" href="#"><i class="fas fa-box mr-2"></i>Предложения</a>
+                            </li>
+                            <li>
+                                <a class="" href="#"><i class="fas fa-comments mr-2"></i>Отзывы</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="offer-datails">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <table class="table" style="font-size: 14px">
+                            <tr>
+                                <td><i class="fas fa-link mr-2"></i> Ссылка</td>
+                                <td class="text-right font-weight-bold">google.com</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-gamepad mr-2"></i> Игра</td>
+                                <td class="text-right font-weight-bold">DOTA 2</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-eye mr-2"></i> Просмотров</td>
+                                <td class="text-right font-weight-bold">260</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-file-signature mr-2"></i> Количество игр</td>
+                                <td class="text-right align-middle font-weight-bold">65</td>
+                            </tr>
+                            <tr>
+                                <td><i class="fas fa-calendar-alt mr-2"></i> Дата создания</td>
+                                <td class="text-right align-middle font-weight-bold">12.12.2017</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <table class="table table-checks mb-0" style="font-size: 14px">
+
+                            <tr>
+                                <td>Без бана</td>
+                                <td class="text-right">@Html.Check(true)</td>
+                            </tr>
+                            <tr>
+                                <td>Личный аккаунт</td>
+                                <td class="text-right">@Html.Check(false)</td>
+                            </tr>
+                            <tr>
+                                <td>Продавец платит за гаранта</td>
+                                <td class="text-right">@Html.Check(true)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    
+</div>
+

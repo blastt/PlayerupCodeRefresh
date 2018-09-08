@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 100px;
     padding-bottom: 20px;
+    background-color: #f4f7f9;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -9,6 +10,43 @@
     padding-right: 15px;
 }
 
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col, .col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm, .col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md, .col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg, .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl, .col-xl-auto {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.input-group-sm > .form-control,
+.input-group-sm > .input-group-prepend > .input-group-text,
+.input-group-sm > .input-group-append > .input-group-text,
+.input-group-sm > .input-group-prepend > .btn,
+.input-group-sm > .input-group-append > .btn {
+    height: calc(1.8125rem + 2px);
+    padding: 0.25rem 0rem 0.25rem 1rem;
+    border-color: #e0e5ea;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    /*border-radius: 0.2rem;*/
+}
+.input-group > .form-control:not(:first-child), .input-group > .custom-select:not(:first-child) {
+    border-left: 0px solid #fff;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.custom-select {
+    padding: 0.375rem 1rem;
+    border-color: #e0e5ea;
+    border-radius: 20px;
+}
+
+.form-control {
+    padding: 0.375rem 1rem;
+    border-color: #e0e5ea;
+    border-radius: 20px;
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -31,7 +69,7 @@ textarea {
 
 .bg-shadow{
     background-color: white;
-    box-shadow:  0 2px 5px 0 rgba(0, 0, 0, 0.05);
+    box-shadow:  0 2px 5px 0 rgba(0, 0, 0, 0.02);
 }
 
 .navbar {
@@ -117,11 +155,140 @@ ul.account-list li {
     border: 1px solid #000; /* Рамка вокруг текста */
     padding: 3px; /* Поля вокруг текста */
 }
-
+ul.account-inner-list{
+    padding-top: 15px;
+    padding-left: 10px
+}
 ul.account-inner-list li {
     display: inline; /* Отображать как строчный элемент */
     margin-right: 5px; /* Отступ слева */
-    border: 1px solid #000; /* Рамка вокруг текста */
     padding: 1px; /* Поля вокруг текста */
 }
+
+ul.account-inner-list li a {
+    color: #333;
+    font-size: 14px;
+}
+
+    ul.account-inner-list li a.active {
+
+        font-weight: 700
+    }
+
+.card-custom {
+    background-color: white;
+    padding: 25px 25px;    
+    border-radius: 15px;
+    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.05);
+}
+
+.card-custom-details {
+    background-color: white;
+    padding: 0px 10px;
+    border-radius: 15px;
+    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.05);
+    min-height: 450px
+}
+
+.search {
+    font-size: 14px
+}
+
+.offer-user {
+    border-right: 1px solid #e0e5ea
+}
+
+.offer-description {
+    border-right: 1px solid #e0e5ea
+}
+
+.offer-price {
+    font-size: 18px;
+    font-weight: 700
+}
+
+.offer-header {
+    margin-bottom: 20px;
+    font-size: 18px
+}
+
+.table-main-discription {
+    border-left: 1px solid #e0e5ea
+}
+
+.table-checks {
+    border-top: 1px solid #e0e5ea
+}
+
+.input-group-text {
+    background-color: white;
+    
+    border-radius: 2rem;
+}
+
+
+.card-custom-account {
+    background-color: white;
+    padding: 0px 10px;
+    border-radius: 15px;
+    box-shadow: 0 0px 5px 0 rgba(0, 0, 0, 0.05);
+}
+
+.offer-datails {
+    padding: 25px 25px;
+}
+.ul-details {
+    padding-left: 0px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    border-radius: 10px 10px 0px 0px;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    display: flex;
+}
+
+ul.ul-details li {
+    width: 50%;
+    display: inline;
+    background-color: #e0e5ea;
+    position: relative;
+}
+
+ul.ul-details li:first-child {
+    border-top-left-radius: 15px;
+}
+
+ul.ul-details li:last-child {
+    border-top-right-radius: 15px;
+}
+
+  
+
+
+
+    ul.ul-details li a {
+        padding: 15px 20px;
+        font-size: 18px;
+        font-weight: 700;
+        color: #91a6b4;
+        display: block;
+        text-decoration: none
+    }
+
+        
+
+        ul.ul-details li.active {
+            color: #70848f;
+            background-color: #fff
+        }
+
+    ul.ul-details li.active a {
+        color: #70848f;
+    }
+
 

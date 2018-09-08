@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MarketplaceMVC.Web.Areas.User.Models.Dialog
+namespace MarketplaceMVC.Web.Models.UserProfile
 {
-    public class DetailsDialogViewModel
+    public class UserProfileViewModel
     {
         public int Id { get; set; }
+        
     }
 }

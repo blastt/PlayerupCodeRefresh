@@ -1,116 +1,73 @@
-﻿@model IEnumerable<MarketplaceMVC.Web.Models.Offer.OfferViewModel>
+﻿@model MarketplaceMVC.Web.Models.Offer.OfferListViewModel
+@using MarketplaceMVC.Web.HtmlHelpers;
 
-    <div class="row">
-        <div class="col-lg-12 text-right">
-            <a class="btn btn-primary mb-3" href="@Url.Action("Create", "Offer")">Продать аккаунт</a>
-        </div>
-        <div class="col-lg-12">
-            <table class="table">
-                <thead class="text-center">
-                    <tr>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="mt-3">Предложений найдено @Model.Offers.Count()</div>
 
-                        <th scope="col"></th>
-                        <th scope="col">Продавец</th>
-                        <th scope="col">Цена</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var offer in Model)
-                    {
-
-
-                        <tr class="description-table-row">
-                            <td class="td-description">
-                                <a class="clickable" href="@Url.Action("Details", new { id = offer.Id })">
-
-
-                                    <table class="table header-table">
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <div class="text-shadow">
-                                                        <div class="hidden-text">@offer.Header</div>
-                                                    </div>
-
-
-                                                </td>
-                                            </tr>
-
-                                        </tbody>
-
-                                    </table>
-                                    <table>
-                                        <tbody>
-                                            <tr class="tr-options small">
-                                                <td class="w-25">
-                                                    Личный
-                                                    @if (offer.PersonalAccount)
-                                                    {
-                                                        <i class="fas fa-check-circle text-success"></i>
-                                                    }
-                                                    else
-                                                    {
-                                                        <i class="fas fa-times-circle text-danger"></i>
-                                                    }
-                                                </td>
-                                                <td class="w-50">
-                                                    Покупатель оплачивает гаранта
-                                                    @if (offer.SellerPaysMiddleman)
-                                                    {
-                                                        <i class="fas fa-check-circle text-success"></i>
-                                                    }
-                                                    else
-                                                    {
-                                                        <i class="fas fa-times-circle text-danger"></i>
-                                                    }
-                                                </td>
-                                                <td class="w-25">
-                                                    Без бана
-                                                    @if (!offer.IsBanned)
-                                                    {
-                                                        <i class="fas fa-check-circle text-success"></i>
-                                                    }
-                                                    else
-                                                    {
-                                                        <i class="fas fa-times-circle text-danger"></i>
-                                                    }
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="description-table">
-                                        <tbody>
-
-                                            <tr class="small">
-                                                <td class="w-25">
-                                                    <a class="font-weight-bold text-primary" href="@offer.Url"><i class="fas fa-link"></i> @offer.ShortUrl</a>
-                                                </td>
-                                                <td class="w-50">
-                                                    Дата регистрации: @offer.CreatedAccountDate.Value.ToShortDateString()
-                                                </td>
-                                                <td class="w-25"></td>
-                                            </tr>
-                                        </tbody>
-
-                                    </table>
-                                </a>
-                            </td>
-                            <td class="w-25 text-center align-middle">
-                                <span>Blast (112)</span> <br />
-                                <div style="color:#ffb400">
-                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-
-                                </div>
-                            </td>
-                            <td class="text-center w-25 align-middle font-weight-bold">@offer.Price руб.</td>
-                        </tr>
-
-
-                    }
-                </tbody>
-                </table>
-            </div>
     </div>
-
+    <div class="col-lg-2">
+        <div class="mt-2 text-right">
+            <i class="fas fa-sort-amount-down"></i> <span class="font-weight-bold" style="font-size: 14px">Сортировать:</span>
+        </div>
+       
+    </div>
+    <div class="col-lg-4 text-right" >
+        <div style="font-size: 14px">
+            @Html.DropDownList("SortBy", Model.SortBy, new { @class = "custom-select" , onchange= "$('form#search-panel').submit(); return false;" })
+        </div>
         
+    </div>
+    @*<a class="btn btn-primary mb-3  text-right" href="@Url.Action("Create", "Offer")">Продать аккаунт</a>*@
+    <div class="col-lg-12 mt-3">
+
+
+        @foreach (var offer in Model.Offers)
+        {
+
+            <div class="card-custom mb-3">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="offer-header"><a href="@Url.Action("Details","Offer", new { id = offer.Id })">@offer.Header</a> </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="offer-user">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 64px" alt="Alternate Tex" />
+                                </div>
+                                <div class="col-sm-6">
+                                    <div>Blast</div>
+                                    <div>Рейтинг: 12</div>
+                                    <div class="badge badge-primary">Online</div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="offer-description">
+                            <div>Без бана @Html.Check(offer.IsBanned)</div>
+                            <div>Личный @Html.Check(offer.PersonalAccount)</div>
+                            <div>Гарант оплачен @Html.Check(offer.SellerPaysMiddleman)</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="offer-price">
+                            <div>@Html.DisplayFor(m => offer.Price)</div>
+                            <a class="btn btn-primary" href="#">Купить</a>
+                            <a class="btn btn-primary" href="#">Детали</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>
+
+
 

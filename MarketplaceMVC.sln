@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketplaceMVC.Service", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketplaceMVC.Web", "MarketplaceMVC.Web\MarketplaceMVC.Web.csproj", "{7008E833-2828-4456-9FFC-64F1676C9620}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketplaceMVC.UnitTests", "MarketplaceMVC.UnitTests\MarketplaceMVC.UnitTests.csproj", "{C5F7C8A5-5DE9-4E19-9341-6D57F7BE0E65}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7008E833-2828-4456-9FFC-64F1676C9620} = {7008E833-2828-4456-9FFC-64F1676C9620}
+		{1028F2BF-359C-490B-A737-3AA08E727D31} = {1028F2BF-359C-490B-A737-3AA08E727D31}
+		{C308F8C9-C768-43C9-8415-1D02261C2225} = {C308F8C9-C768-43C9-8415-1D02261C2225}
+		{C743D4D0-4004-4314-A186-890F32F08AF6} = {C743D4D0-4004-4314-A186-890F32F08AF6}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +41,10 @@ Global
 		{7008E833-2828-4456-9FFC-64F1676C9620}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7008E833-2828-4456-9FFC-64F1676C9620}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7008E833-2828-4456-9FFC-64F1676C9620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5F7C8A5-5DE9-4E19-9341-6D57F7BE0E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5F7C8A5-5DE9-4E19-9341-6D57F7BE0E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5F7C8A5-5DE9-4E19-9341-6D57F7BE0E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5F7C8A5-5DE9-4E19-9341-6D57F7BE0E65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

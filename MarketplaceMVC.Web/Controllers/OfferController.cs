@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace MarketplaceMVC.Web.Controllers
 {
+    
     public class OfferController : Controller
     {
         private readonly IOfferService offerService;
@@ -31,6 +32,7 @@ namespace MarketplaceMVC.Web.Controllers
             var games = await gameService.GetAllGamesAsync();
             var offers = await offerService.GetAllOffersAsync();
             var model = new OfferListViewModel();
+            
             foreach (var game in (await gameService.GetAllGamesAsync()).OrderBy(g => g.Rank).ToList())
             {
                 model.Games.Add(
@@ -64,7 +66,12 @@ namespace MarketplaceMVC.Web.Controllers
             offers = offers.Where(o => search.PriceFrom <= o.Price && search.PriceTo >= o.Price).ToList();
 
             var modelOffers = Mapper.Map<IEnumerable<Offer>, IEnumerable<OfferViewModel>>(offers);
-            return PartialView("_OfferTable", modelOffers);
+
+            var model = new OfferListViewModel()
+            {
+                Offers = modelOffers
+            };
+            return PartialView("_OfferTable", model);
         }
 
         [HttpGet]
@@ -106,7 +113,7 @@ namespace MarketplaceMVC.Web.Controllers
         {
             if (id != null)
             {
-                Offer offer = await offerService.GetOfferAsync(id.Value);
+                Offer offer = await offerService.GetOfferAsync(id.Value, i => i.UserProfile);
                 if (offer != null)
                 {
                     var model = Mapper.Map<Offer, DetailsOfferViewModel>(offer);

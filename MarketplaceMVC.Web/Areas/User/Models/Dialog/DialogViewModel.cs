@@ -1,4 +1,5 @@
 ﻿using MarketplaceMVC.Model.Models;
+using MarketplaceMVC.Web.Areas.User.Models.Message;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,6 @@ namespace MarketplaceMVC.Web.Areas.User.Models.Dialog
 
         public string CompanionId { get; set; }
         public UserProfile Companion { get; set; }
-        //public ICollection<MessageViewModel> Messages { get; set; }
+        public ICollection<MessageViewModel> Messages { get; set; }
     }
 }

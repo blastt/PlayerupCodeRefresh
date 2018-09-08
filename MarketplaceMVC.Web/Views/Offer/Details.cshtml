@@ -1,9 +1,97 @@
 ﻿@model MarketplaceMVC.Web.Models.Offer.DetailsOfferViewModel
-
+@using MarketplaceMVC.Web.HtmlHelpers;
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Header</h2>
+<div class="row">
+    <div class="col-lg-3">
+        <div class="card-custom">
+            <div class="text-center mb-2">
+                <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 64px" alt="Alternate Tex" />
+            </div>
+            <div class="text-center font-weight-bold">
+                <a href="@Url.Action("Details","UserProfile",new { id = Model.UserId })">Blast</a>
+            </div>
+            <div class="text-center">
+                <a class="btn btn-primary" href="#"><i class="fas fa-envelope"></i> Написать</a>
+            </div>
+            <table class="table" style="font-size: 14px">
+                <tr>
+                    <td>Дата</td>
+                    <td class="text-right">12.12.2017</td>
+                </tr>
+                <tr>
+                    <td>Рейтинг</td>
+                    <td class="text-right">12</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-thumbs-up"></i></td>
+                    <td class="text-right">12</td>
+                </tr>
+                <tr>
+                    <td><i class="fas fa-thumbs-down"></i></td>
+                    <td class="text-right">2</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="col-lg-5">
+        
+        <div class="card-custom">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table" style="font-size: 14px">
+                        <tr>
+                            <td><i class="fas fa-link mr-2"></i> Ссылка</td>
+                            <td class="text-right font-weight-bold">google.com</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-gamepad mr-2"></i> Игра</td>
+                            <td class="text-right font-weight-bold">DOTA 2</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-eye mr-2"></i> Просмотров</td>
+                            <td class="text-right font-weight-bold">260</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-file-signature mr-2"></i> Количество игр</td>
+                            <td class="text-right align-middle font-weight-bold">65</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fas fa-calendar-alt mr-2"></i> Дата создания</td>
+                            <td class="text-right align-middle font-weight-bold">12.12.2017</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="col-lg-12">
+                    <table class="table table-checks mb-0" style="font-size: 14px">
+                        
+                        <tr>
+                            <td>Без бана</td>
+                            <td class="text-right">@Html.Check(true)</td>
+                        </tr>
+                        <tr>
+                            <td>Личный аккаунт</td>
+                            <td class="text-right">@Html.Check(false)</td>
+                        </tr>
+                        <tr>
+                            <td>Продавец платит за гаранта</td>
+                            <td class="text-right">@Html.Check(true)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card-custom-details">
+
+        </div>
+    </div>
+</div>
 

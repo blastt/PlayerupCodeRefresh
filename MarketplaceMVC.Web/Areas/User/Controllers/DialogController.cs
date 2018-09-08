@@ -23,14 +23,6 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
             this.userProfileService = userProfileService;
         }
 
-        public async Task<ActionResult> List()
-        {
-            int currentUserId = User.Identity.GetUserId<int>();
-            var dialogs = await dialogService.GetUserDialogsAsync(currentUserId);
-            var model = Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
-            return View(model);
-        }
-
         public async Task<ActionResult> Inbox()
         {
             int currentUserId = User.Identity.GetUserId<int>();
@@ -39,15 +31,16 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> Unread()
+        public async Task<ViewResult> Unread()
         {
+
             int currentUserId = User.Identity.GetUserId<int>();
             var dialogs = await dialogService.GetUserDialogsAsync(currentUserId, d => d.Messages.Any(m => m.ToViewed));
             var model = Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
             return View(model);
         }
 
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ViewResult> Details(int? id)
         {
             if (id != null)
             {

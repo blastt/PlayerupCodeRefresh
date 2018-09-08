@@ -1,12 +1,24 @@
-﻿
-<div class="row">
+﻿@using MarketplaceMVC.Web.HtmlHelpers
+<div class="row" style="margin-left: -20px; margin-right: -20px">
     <div class="col-lg-12">
-        <ul class="account-list" id="account-list">
-            <li class="account-menu-item">@Html.ActionLink("Cообщения", "Inbox", "Message")</li>
-            <li class="account-menu-item">@Html.ActionLink("Предложения", "Active", "Offer")</li>
-            <li class="account-menu-item">@Html.ActionLink("Заказы", "OrderBuy", "Order")</li>
-            <li class="account-menu-item">@Html.ActionLink("Отзывы", "All", "Feedback")</li>
-            <li class="account-menu-item">@Html.ActionLink("Настройки", "Settings", "Account")</li>
-        </ul>
+        <div class="text-center">
+            <ul class="ul-details" style="margin: auto">
+                <li class="@Html.IsSelected(actions: "Inbox,Unread,Details", controllers: "Message,Dialog")">
+                    <a href="@Url.Action("Inbox","Offer")"><i class="fas fa-envelope mr-2"></i>Сообщения</a>
+                </li>
+                <li class="@Html.IsSelected(actions: "Active,Inactive,Closed", controllers: "Offer")">
+                    <a href="@Url.Action("Inbox","Offer")"><i class="fas fa-box mr-2"></i>Предложения</a>
+                </li>
+                <li class="@Html.IsSelected(actions: "OrderBuy,OrderSell,BuyDetails,SellDetails", controllers: "Order")">
+                    <a href="@Url.Action("OrderBuy","Order")"><i class="fas fa-boxes mr-2"></i>Заказы</a>
+                </li>
+                <li class="@Html.IsSelected(actions: "All,Positive,Negative", controllers: "Feedback")">
+                    <a href="#"><i class="fas fa-comments mr-2"></i>Отзывы</a>
+                </li>
+                <li class="@Html.IsSelected(actions: "Settings", controllers: "Account")">
+                    <a href="#"><i class="fas fa-cog mr-2"></i>Настройки</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

@@ -27,7 +27,7 @@ namespace MarketplaceMVC.Service
         IEnumerable<Dialog> GetUserDialogs(int userId, params Expression<Func<Dialog, object>>[] includes);
         IEnumerable<Dialog> GetUserDialogs(int userId, Expression<Func<Dialog, bool>> where, params Expression<Func<Dialog, object>>[] includes);
         Task<List<Dialog>> GetUserDialogsAsync(int userId, params Expression<Func<Dialog, object>>[] includes);
-        Task<List<Dialog>> GetUserDialogsAsync(int userId, Expression<Func<Dialog, bool>> where, params Expression<Func<Dialog, object>>[] includes);
+        //Task<List<Dialog>> GetUserDialogsAsync(int userId, Expression<Func<Dialog, bool>> where, params Expression<Func<Dialog, object>>[] includes);
         int UnreadDialogsForUserCount(int userId);
         int UnreadMessagesInDialogCount(Dialog dialog);
 
@@ -175,11 +175,11 @@ namespace MarketplaceMVC.Service
             return dialogs;
         }
 
-        public async Task<List<Dialog>> GetUserDialogsAsync(int userId, Expression<Func<Dialog, bool>> where, params Expression<Func<Dialog, object>>[] includes)
-        {
-            var dialogs = await dialogsRepository.GetManyAsync(where, includes).Where(d => d.CompanionId == userId || d.CreatorId == userId);
-            return dialogs;
-        }
+        //public async Task<List<Dialog>> GetUserDialogsAsync(int userId, Expression<Func<Dialog, bool>> where, params Expression<Func<Dialog, object>>[] includes)
+        //{
+        //    var dialogs = (await dialogsRepository.GetManyAsync(where, includes)).Where(d => d.CompanionId == userId || d.CreatorId == userId);
+        //    return dialogs;
+        //}
 
         public int UnreadMessagesInDialogCount(Dialog dialog)
         {
