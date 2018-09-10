@@ -14,59 +14,61 @@
     </div>
     <div class="col-lg-4 text-right" >
         <div style="font-size: 14px">
-            @Html.DropDownList("SortBy", Model.SortBy, new { @class = "custom-select" , onchange= "$('form#search-panel').submit(); return false;" })
+            @Html.DropDownList("SortBy", Model.SortBy, new { @class = "custom-select" , onchange= "submitForm(this)" })
         </div>
         
     </div>
     @*<a class="btn btn-primary mb-3  text-right" href="@Url.Action("Create", "Offer")">Продать аккаунт</a>*@
-    <div class="col-lg-12 mt-3">
+
+        <div class="col-lg-12 mt-3">
 
 
-        @foreach (var offer in Model.Offers)
-        {
+            @foreach (var offer in Model.Offers)
+            {
 
-            <div class="card-custom mb-3">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="offer-header"><a href="@Url.Action("Details","Offer", new { id = offer.Id })">@offer.Header</a> </div>
-                    </div>
-                    <div class="col-md-4">
+                <div class="card-custom mb-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="offer-header"><a href="@Url.Action("Details","Offer", new { id = offer.Id })">@offer.Header</a> </div>
+                        </div>
+                        <div class="col-md-4">
 
-                        <div class="offer-user">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 64px" alt="Alternate Tex" />
+                            <div class="offer-user">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 64px" alt="Alternate Tex" />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div>Blast</div>
+                                        <div>Рейтинг: 12</div>
+                                        <div class="badge badge-primary">Online</div>
+                                    </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <div>Blast</div>
-                                    <div>Рейтинг: 12</div>
-                                    <div class="badge badge-primary">Online</div>
-                                </div>
+
+
                             </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="offer-description">
+                                <div>Без бана @Html.Check(offer.IsBanned)</div>
+                                <div>Личный @Html.Check(offer.PersonalAccount)</div>
+                                <div>Гарант оплачен @Html.Check(offer.SellerPaysMiddleman)</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="offer-price">
+                                <div>@Html.DisplayFor(m => offer.Price)</div>
+                                <a class="btn btn-primary" href="#">Купить</a>
+                                <a class="btn btn-primary" href="#">Детали</a>
+                            </div>
+                        </div>
+                    </div>
 
-
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="offer-description">
-                            <div>Без бана @Html.Check(offer.IsBanned)</div>
-                            <div>Личный @Html.Check(offer.PersonalAccount)</div>
-                            <div>Гарант оплачен @Html.Check(offer.SellerPaysMiddleman)</div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="offer-price">
-                            <div>@Html.DisplayFor(m => offer.Price)</div>
-                            <a class="btn btn-primary" href="#">Купить</a>
-                            <a class="btn btn-primary" href="#">Детали</a>
-                        </div>
-                    </div>
                 </div>
+            }
 
-            </div>
-        }
+        </div>
 
-    </div>
 </div>
 
 

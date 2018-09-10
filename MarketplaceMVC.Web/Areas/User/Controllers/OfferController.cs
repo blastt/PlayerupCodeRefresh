@@ -2,7 +2,6 @@
 using MarketplaceMVC.Model.Models;
 using MarketplaceMVC.Service;
 using MarketplaceMVC.Web.Areas.User.Models.Offer;
-using MarketplaceMVC.Web.Models.Offer;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -13,6 +12,7 @@ using System.Web.Mvc;
 
 namespace MarketplaceMVC.Web.Areas.User.Controllers
 {
+    [Authorize]
     public class OfferController : Controller
     {
 

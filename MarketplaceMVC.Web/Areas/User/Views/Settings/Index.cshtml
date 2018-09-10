@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card-custom-account">
+    @{ Html.RenderPartial("_Menu"); }
+    <div class="settings-container">
+
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-collapse" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fas fa-at mr-2"></i>Изменить Email
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @using (Html.BeginForm("", ""))
+                                {
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Новый пароль</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Подтвердите пароль</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-collapse collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i class="fas fa-unlock-alt mr-2"></i>Изменить пароль
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                @using (Html.BeginForm("", ""))
+                                {
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Ваш текущий пароль на PlayerUp</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Новый Email</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                }
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>

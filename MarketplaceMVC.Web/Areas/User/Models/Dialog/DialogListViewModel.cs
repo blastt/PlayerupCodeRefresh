@@ -8,5 +8,7 @@ namespace MarketplaceMVC.Web.Areas.User.Models.Dialog
     public class DialogListViewModel
     {
         public IEnumerable<DialogViewModel> Dialogs { get; set; }
+        public int CountOfInbox { get; set; }
+        public int CountOfUnread { get; set; }
     }
 }

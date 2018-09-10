@@ -4,6 +4,7 @@ using MarketplaceMVC.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@ namespace MarketplaceMVC.Service
     {
         IEnumerable<Feedback> GetAllFeedbacks();
         Task<List<Feedback>> GetAllFeedbacksAsync();
+        IEnumerable<Feedback> GetFeedbacks(Expression<Func<Feedback, bool>> where, params Expression<Func<Feedback, object>>[] includes);
+        Task<List<Feedback>> GetFeedbacksAsync(Expression<Func<Feedback, bool>> where, params Expression<Func<Feedback, object>>[] includes);
 
         int PositiveFeedbackCount(UserProfile user);
         int NegativeFeedbackCount(UserProfile user);
@@ -46,13 +49,24 @@ namespace MarketplaceMVC.Service
 
         public IEnumerable<Feedback> GetAllFeedbacks()
         {
-            var feedback = feedbacksRepository.GetAll();
-            return feedback;
+            var feedbacks = feedbacksRepository.GetAll();
+            return feedbacks;
         }
 
         public async Task<List<Feedback>> GetAllFeedbacksAsync()
         {
             return await feedbacksRepository.GetAllAsync();
+        }
+
+        public IEnumerable<Feedback> GetFeedbacks(Expression<Func<Feedback, bool>> where, params Expression<Func<Feedback, object>>[] includes)
+        {
+            var feedbacks = feedbacksRepository.GetMany(where, includes);
+            return feedbacks;
+        }
+
+        public async Task<List<Feedback>> GetFeedbacksAsync(Expression<Func<Feedback, bool>> where, params Expression<Func<Feedback, object>>[] includes)
+        {
+            return await feedbacksRepository.GetManyAsync(where, includes);
         }
 
         public void LeaveAutomaticFeedback(int sellerId, int buyerId, int orderId)

@@ -23,7 +23,7 @@ namespace MarketplaceMVC.Service
         IEnumerable<Order> GetOrders();
         IEnumerable<Order> GetOrders(params Expression<Func<Order, object>>[] includes);
         IEnumerable<Order> GetOrders(Expression<Func<Order, bool>> where, params Expression<Func<Order, object>>[] includes);
-        
+        Task<List<Order>> GetOrdersAsync(Expression<Func<Order, bool>> where, params Expression<Func<Order, object>>[] includes);
 
 
         //IEnumerable<Offer> GetCategoryGadgets(string categoryName, string gadgetName = null);
@@ -87,6 +87,12 @@ namespace MarketplaceMVC.Service
         {
             var query = ordersRepository.GetMany(where, includes);
             return query;
+        }
+
+        public async Task<List<Order>> GetOrdersAsync(Expression<Func<Order, bool>> where, params Expression<Func<Order, object>>[] includes)
+        {
+            return await ordersRepository.GetManyAsync(where, includes);
+
         }
 
         public void DeleteOrder(Order order)

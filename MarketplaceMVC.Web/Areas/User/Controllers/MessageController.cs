@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace MarketplaceMVC.Web.Areas.User.Controllers
 {
+    [Authorize]
     public class MessageController : Controller
     {
         public ActionResult Create()

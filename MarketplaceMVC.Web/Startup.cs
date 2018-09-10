@@ -1,4 +1,5 @@
 ﻿using MarketplaceMVC.Web;
+using MarketplaceMVC.Web.Areas.User.Automapper;
 using MarketplaceMVC.Web.Automapper;
 using Microsoft.Owin;
 using Owin;

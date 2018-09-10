@@ -68,26 +68,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountInfo.cs" />
+    <Compile Include="Services\AccountInfo.cs" />
     <Compile Include="Autofac\ServiceLayer.cs" />
-    <Compile Include="Billing.cs" />
-    <Compile Include="Dialog.cs" />
-    <Compile Include="Feedbacks.cs" />
-    <Compile Include="Game.cs" />
+    <Compile Include="Services\Billing.cs" />
+    <Compile Include="Services\Dialog.cs" />
+    <Compile Include="Services\Feedbacks.cs" />
+    <Compile Include="Services\Game.cs" />
     <Compile Include="Identity\ApplicationRoleManager.cs" />
     <Compile Include="Identity\ApplicationSignInManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Identity\EmailService.cs" />
     <Compile Include="Identity\SmsService.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="Offer.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="OrderStatus.cs" />
+    <Compile Include="Services\Message.cs" />
+    <Compile Include="Services\Offer.cs" />
+    <Compile Include="Services\Order.cs" />
+    <Compile Include="Services\OrderStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StatusLog.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="UserProfiles.cs" />
-    <Compile Include="Withdraw.cs" />
+    <Compile Include="Services\StatusLog.cs" />
+    <Compile Include="Services\Transaction.cs" />
+    <Compile Include="Services\UserProfiles.cs" />
+    <Compile Include="Services\Withdraw.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -103,8 +103,6 @@
       <Name>MarketplaceMVC.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

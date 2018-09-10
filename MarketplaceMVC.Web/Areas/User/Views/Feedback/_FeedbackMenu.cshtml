@@ -1,0 +1,10 @@
+﻿@model MarketplaceMVC.Web.Areas.User.Models.Feedback.FeedbackListViewModel
+@using MarketplaceMVC.Web.HtmlHelpers
+
+<ul class="account-inner-list" id="account-inner-list">
+
+    <li class="account-inner-menu-item ">@Html.ActionLink("Все (" + Model.CountOfPositive + ")", "All", "Feedback", null, new { @class = "account-inner-menu-link " + Html.IsSelected(actions: "All", controllers: "Feedback") })</li>
+    <li class="account-inner-menu-item ">@Html.ActionLink("Позитивные (" + Model.CountOfPositive + ")", "Positive", "Feedback", null, new { @class = "account-inner-menu-link " + Html.IsSelected(actions: "Positive", controllers: "Feedback") })</li>
+    <li class="account-inner-menu-item">@Html.ActionLink("Негативные (" + Model.CountOfNegative + ")", "Negative", "Feedback", null, new { @class = "account-inner-menu-link " + Html.IsSelected(actions: "Negative", controllers: "Feedback") })</li>
+
+</ul>

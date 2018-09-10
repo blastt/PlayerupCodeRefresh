@@ -9,7 +9,7 @@ using System.Web;
 
 namespace MarketplaceMVC.Web.Automapper
 {
-    public class ViewModelToDomainMappingProfile : Profile
+    public partial class ViewModelToDomainMappingProfile : Profile
     {
         public override string ProfileName
         {

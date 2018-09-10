@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MarketplaceMVC.Model.Models;
-using MarketplaceMVC.Web.Areas.User.Models.Dialog;
 using MarketplaceMVC.Web.Models.Offer;
 using MarketplaceMVC.Web.Models.UserProfile;
 using System;
@@ -10,7 +9,7 @@ using System.Web;
 
 namespace MarketplaceMVC.Web.Automapper
 {
-    public class DomainToViewModelMappingProfile : Profile
+    public partial class DomainToViewModelMappingProfile : Profile
     {
         public override string ProfileName
         {
@@ -49,16 +48,7 @@ namespace MarketplaceMVC.Web.Automapper
                 .ForPath(o => o.UserId, map => map.MapFrom(vm => vm.UserProfile.Id))
                 .ForPath(o => o.UserName, map => map.MapFrom(vm => vm.UserProfile.Name));
 
-            CreateMap<Dialog, DialogViewModel>()
-               .ForMember(o => o.Id, map => map.MapFrom(vm => vm.Id))
 
-               .ForMember(o => o.Messages, map => map.MapFrom(vm => vm.Messages))
-               .ForMember(o => o.Companion, map => map.MapFrom(vm => vm.Companion))
-               .ForMember(o => o.Creator, map => map.MapFrom(vm => vm.Creator))
-               .ForMember(o => o.CountOfNewMessages, map => map.MapFrom(vm => vm.Messages.Where(m => !m.ToViewed)));
-
-            CreateMap<Dialog, DetailsDialogViewModel>()
-               .ForMember(o => o.Id, map => map.MapFrom(vm => vm.Id));
 
             CreateMap<UserProfile, UserProfileViewModel>()
                .ForMember(o => o.Id, map => map.MapFrom(vm => vm.Id));

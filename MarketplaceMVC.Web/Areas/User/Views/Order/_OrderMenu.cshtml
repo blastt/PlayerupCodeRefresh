@@ -1,0 +1,8 @@
+﻿@model MarketplaceMVC.Web.Areas.User.Models.Order.OrderListViewModel
+@using MarketplaceMVC.Web.HtmlHelpers
+
+<ul class="account-inner-list" id="account-inner-list">
+
+    <li class="account-inner-menu-item ">@Html.ActionLink("Заказы (покупка)", "SellList", "Order", null, new { @class = "account-inner-menu-link " + Html.IsSelected(actions: "SellList", controllers: "Order") })</li>
+    <li class="account-inner-menu-item">@Html.ActionLink("Заказы (продажа)", "BuyList", "Order", null, new { @class = "account-inner-menu-link " + Html.IsSelected(actions: "BuyList", controllers: "Order") })</li>
+</ul>

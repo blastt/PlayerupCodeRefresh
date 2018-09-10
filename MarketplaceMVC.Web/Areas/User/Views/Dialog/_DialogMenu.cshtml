@@ -1,0 +1,8 @@
+﻿@model MarketplaceMVC.Web.Areas.User.Models.Dialog.DialogListViewModel
+@using MarketplaceMVC.Web.HtmlHelpers
+
+<ul class="account-inner-list" id="account-inner-list">
+
+    <li class="account-inner-menu-item ">@Html.ActionLink("Почта (" + Model.CountOfInbox + ")", "Inbox", "Dialog", null, new { @class = "account-inner-menu-link " + Html.IsSelected(actions: "Inbox", controllers: "Dialog") })</li>
+    <li class="account-inner-menu-item">@Html.ActionLink("Непрочитанные (" + Model.CountOfUnread + ")", "Unread", "Dialog", null, new { @class = "account-inner-menu-link " + Html.IsSelected(actions: "Unread", controllers: "Dialog") })</li>
+</ul>

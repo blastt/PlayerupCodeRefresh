@@ -1,0 +1,33 @@
+﻿@model MarketplaceMVC.Web.Areas.User.Models.Dialog.DialogListViewModel
+@{
+    ViewBag.Title = "Unread";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card-custom-account">
+    @{ Html.RenderPartial("_Menu"); }
+    @{ Html.RenderPartial("_DialogMenu", Model); }
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dialog in Model.Dialogs)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>432432</td>
+                    <td>45353</td>
+                    <td>634543</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

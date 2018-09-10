@@ -4,19 +4,19 @@
         <div class="text-center">
             <ul class="ul-details" style="margin: auto">
                 <li class="@Html.IsSelected(actions: "Inbox,Unread,Details", controllers: "Message,Dialog")">
-                    <a href="@Url.Action("Inbox","Offer")"><i class="fas fa-envelope mr-2"></i>Сообщения</a>
+                    <a href="@Url.Action("Inbox","Dialog")"><i class="fas fa-envelope mr-2"></i>Сообщения</a>
                 </li>
                 <li class="@Html.IsSelected(actions: "Active,Inactive,Closed", controllers: "Offer")">
-                    <a href="@Url.Action("Inbox","Offer")"><i class="fas fa-box mr-2"></i>Предложения</a>
+                    <a href="@Url.Action("Active","Offer")"><i class="fas fa-box mr-2"></i>Предложения</a>
                 </li>
-                <li class="@Html.IsSelected(actions: "OrderBuy,OrderSell,BuyDetails,SellDetails", controllers: "Order")">
-                    <a href="@Url.Action("OrderBuy","Order")"><i class="fas fa-boxes mr-2"></i>Заказы</a>
+                <li class="@Html.IsSelected(actions: "BuyList,SellList,BuyDetails,SellDetails", controllers: "Order")">
+                    <a href="@Url.Action("SellList","Order")"><i class="fas fa-boxes mr-2"></i>Заказы</a>
                 </li>
                 <li class="@Html.IsSelected(actions: "All,Positive,Negative", controllers: "Feedback")">
-                    <a href="#"><i class="fas fa-comments mr-2"></i>Отзывы</a>
+                    <a href="@Url.Action("All","Feedback")"><i class="fas fa-comments mr-2"></i>Отзывы</a>
                 </li>
-                <li class="@Html.IsSelected(actions: "Settings", controllers: "Account")">
-                    <a href="#"><i class="fas fa-cog mr-2"></i>Настройки</a>
+                <li class="@Html.IsSelected(actions: "Index", controllers: "Settings")">
+                    <a href="@Url.Action("Index","Settings")"><i class="fas fa-cog mr-2"></i>Настройки</a>
                 </li>
             </ul>
         </div>

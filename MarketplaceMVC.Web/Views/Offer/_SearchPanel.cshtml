@@ -7,6 +7,7 @@
         <div class="card-custom search">
             @using (Ajax.BeginForm("OfferSearch","Offer", null, new AjaxOptions { UpdateTargetId = "offers" }, new { id = "search-panel" }))
             {
+            <input type="hidden" id="sort" name="SortBy" value="BestSeller" />
                 <div class="form-group">
 
                     <label for="inputEmail4">Игра</label>
@@ -60,7 +61,8 @@
                 <div class="form-group">
                     <div class="custom-control custom-checkbox">
                         @Html.CheckBox("IsBanned", false, new { @class = "custom-control-input", id = "isbanned" })
-                        <label class="custom-control-label" for="inbanned">
+
+                        <label class="custom-control-label" for="isbanned">
                             Аккаунт с баном
                         </label>
                     </div>

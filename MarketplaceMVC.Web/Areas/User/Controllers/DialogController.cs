@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace MarketplaceMVC.Web.Areas.User.Controllers
 {
+    [Authorize]
     public class DialogController : Controller
     {
         private readonly IDialogService dialogService;
@@ -27,7 +28,11 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
         {
             int currentUserId = User.Identity.GetUserId<int>();
             var dialogs = await dialogService.GetUserDialogsAsync(currentUserId);
-            var model = Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
+            var modelDialogs = Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
+            var model = new DialogListViewModel()
+            {
+                Dialogs = modelDialogs
+            };
             return View(model);
         }
 
@@ -35,8 +40,12 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
         {
 
             int currentUserId = User.Identity.GetUserId<int>();
-            var dialogs = await dialogService.GetUserDialogsAsync(currentUserId, d => d.Messages.Any(m => m.ToViewed));
-            var model = Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
+            var dialogs = await dialogService.GetUserDialogsAsync(currentUserId, d => d.Messages.Any(m => !m.ToViewed));
+            var modelDialogs = Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
+            var model = new DialogListViewModel()
+            {
+                Dialogs = modelDialogs
+            };
             return View(model);
         }
 

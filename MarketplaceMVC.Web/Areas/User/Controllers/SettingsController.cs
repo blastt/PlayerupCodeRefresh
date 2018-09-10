@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace MarketplaceMVC.Web.Areas.User.Controllers
 {
+    [Authorize]
     public class SettingsController : Controller
     {
-        // GET: User/Settings
         public ActionResult Index()
         {
             return View();

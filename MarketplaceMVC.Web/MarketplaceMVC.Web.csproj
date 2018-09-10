@@ -202,6 +202,8 @@
     <Compile Include="Areas\Admin\Controllers\GameController.cs" />
     <Compile Include="Areas\Admin\Models\Game\CreateGameViewModel.cs" />
     <Compile Include="Areas\Middleman\MiddlemanAreaRegistration.cs" />
+    <Compile Include="Areas\User\Automapper\DomainToViewModelUserMappingProfile.cs" />
+    <Compile Include="Areas\User\Automapper\ViewModelToDomainUserMappingProfile.cs" />
     <Compile Include="Areas\User\Controllers\DialogController.cs" />
     <Compile Include="Areas\User\Controllers\FeedbackController.cs" />
     <Compile Include="Areas\User\Controllers\MessageController.cs" />
@@ -211,8 +213,13 @@
     <Compile Include="Areas\User\Models\Dialog\DetailsDialogViewModel.cs" />
     <Compile Include="Areas\User\Models\Dialog\DialogListViewModel.cs" />
     <Compile Include="Areas\User\Models\Dialog\DialogViewModel.cs" />
+    <Compile Include="Areas\User\Models\Feedback\FeedbackListViewModel.cs" />
+    <Compile Include="Areas\User\Models\Feedback\FeedbackViewModel.cs" />
     <Compile Include="Areas\User\Models\Message\MessageViewModel.cs" />
     <Compile Include="Areas\User\Models\Offer\OfferListViewModel.cs" />
+    <Compile Include="Areas\User\Models\Offer\OfferViewModel.cs" />
+    <Compile Include="Areas\User\Models\Order\OrderListViewModel.cs" />
+    <Compile Include="Areas\User\Models\Order\OrderViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Automapper\DomainToViewModelMappingProfile.cs" />
@@ -234,6 +241,7 @@
     <Compile Include="Models\Offer\OfferListViewModel.cs" />
     <Compile Include="Models\Offer\OfferViewModel.cs" />
     <Compile Include="Models\Offer\SearchOfferViewModel.cs" />
+    <Compile Include="Models\Order\OrderViewModel.cs" />
     <Compile Include="Models\UserProfile\UserProfileViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -290,6 +298,16 @@
     <Content Include="Areas\User\Views\Offer\Closed.cshtml" />
     <Content Include="Areas\User\Views\Dialog\Details.cshtml" />
     <Content Include="Areas\User\Views\Dialog\List.cshtml" />
+    <Content Include="Areas\User\Views\Dialog\Inbox.cshtml" />
+    <Content Include="Areas\User\Views\Dialog\_DialogMenu.cshtml" />
+    <Content Include="Areas\User\Views\Order\_OrderMenu.cshtml" />
+    <Content Include="Areas\User\Views\Order\SellList.cshtml" />
+    <Content Include="Areas\User\Views\Dialog\Unread.cshtml" />
+    <Content Include="Areas\User\Views\Feedback\Positive.cshtml" />
+    <Content Include="Areas\User\Views\Feedback\_FeedbackMenu.cshtml" />
+    <Content Include="Areas\User\Views\Feedback\All.cshtml" />
+    <Content Include="Areas\User\Views\Feedback\Negative.cshtml" />
+    <Content Include="Areas\User\Views\Settings\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -302,6 +320,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\list.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
@@ -367,10 +386,7 @@
     <Folder Include="Areas\Middleman\Controllers\" />
     <Folder Include="Areas\Middleman\Models\" />
     <Folder Include="Areas\Middleman\Views\Shared\" />
-    <Folder Include="Areas\User\Views\Feedback\" />
     <Folder Include="Areas\User\Views\Message\" />
-    <Folder Include="Areas\User\Views\Order\" />
-    <Folder Include="Areas\User\Views\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
