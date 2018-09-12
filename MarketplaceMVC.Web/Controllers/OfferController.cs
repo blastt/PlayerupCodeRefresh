@@ -32,7 +32,25 @@ namespace MarketplaceMVC.Web.Controllers
             var games = await gameService.GetAllGamesAsync();
             var offers = await offerService.GetAllOffersAsync();
             var model = new OfferListViewModel();
+
+            Dictionary<char, List<string>> gameNames = new Dictionary<char, List<string>>();
+            IList<Char> letters = new List<Char>()
+            {
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+                'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+                'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+                'Y', 'Z'
+            };
+
+            var sortedGames = games.OrderBy(g => g.Name);
+
+
+            foreach (var letter in letters)
+            {
+                gameNames.Add(letter, sortedGames.Where(g => g.Name.FirstOrDefault() == letter).Select(g => g.Name).ToList());
+            }
             
+            ViewData["Letters"] = gameNames;
             foreach (var game in (await gameService.GetAllGamesAsync()).OrderBy(g => g.Rank).ToList())
             {
                 model.Games.Add(
