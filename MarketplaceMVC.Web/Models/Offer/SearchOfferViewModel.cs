@@ -16,5 +16,7 @@ namespace MarketplaceMVC.Web.Models.Offer
         public decimal PriceTo { get; set; }
         public bool PersonalAccount { get; set; }
         public bool IsBanned { get; set; }
+
+        public int Page { get; set; } = 1;
     }
 }

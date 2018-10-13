@@ -13,9 +13,9 @@ namespace MarketplaceMVC.Service
     public interface IUserProfileService
     {
         IEnumerable<UserProfile> GetAllUserProfiles();
-        IEnumerable<UserProfile> GetAllUserProfiles(Expression<Func<UserProfile, bool>> where, params Expression<Func<UserProfile, object>>[] includes);
+        IEnumerable<UserProfile> GetAllUserProfiles(params Expression<Func<UserProfile, object>>[] includes);
         Task<List<UserProfile>> GetAllUserProfilesAsync();
-        Task<List<UserProfile>> GetAllUserProfilesAsync(Expression<Func<UserProfile, bool>> where, params Expression<Func<UserProfile, object>>[] includes);
+        Task<List<UserProfile>> GetAllUserProfilesAsync(params Expression<Func<UserProfile, object>>[] includes);
 
         UserProfile GetUserProfile(Expression<Func<UserProfile, bool>> where, params Expression<Func<UserProfile, object>>[] includes);
         UserProfile GetUserProfileById(int id);
@@ -27,6 +27,7 @@ namespace MarketplaceMVC.Service
 
         void CreateUserProfile(UserProfile userProfile);
         void UpdateUserProfile(UserProfile userProfile);
+        void RemoveUserProfile(UserProfile userProfile);
         void SaveUserProfile();
         Task SaveUserProfileAsync();
     }
@@ -50,9 +51,9 @@ namespace MarketplaceMVC.Service
             return userProfile;
         }
 
-        public IEnumerable<UserProfile> GetAllUserProfiles(Expression<Func<UserProfile, bool>> where, params Expression<Func<UserProfile, object>>[] includes)
+        public IEnumerable<UserProfile> GetAllUserProfiles(params Expression<Func<UserProfile, object>>[] includes)
         {
-            var userProfile = userProfilesRepository.GetMany(where, includes);
+            var userProfile = userProfilesRepository.GetAll(includes);
             return userProfile;
         }
 
@@ -61,9 +62,9 @@ namespace MarketplaceMVC.Service
             return await userProfilesRepository.GetAllAsync();
         }
 
-        public async Task<List<UserProfile>> GetAllUserProfilesAsync(Expression<Func<UserProfile, bool>> where, params Expression<Func<UserProfile, object>>[] includes)
+        public async Task<List<UserProfile>> GetAllUserProfilesAsync(params Expression<Func<UserProfile, object>>[] includes)
         {
-            return await userProfilesRepository.GetManyAsync(where, includes);
+            return await userProfilesRepository.GetAllAsync(includes);
         }
 
 
@@ -114,6 +115,11 @@ namespace MarketplaceMVC.Service
         public void CreateUserProfile(UserProfile userProfile)
         {
             userProfilesRepository.Add(userProfile);
+        }
+
+        public void RemoveUserProfile(UserProfile userProfile)
+        {
+            userProfilesRepository.Remove(userProfile);
         }
 
         public void SaveUserProfile()

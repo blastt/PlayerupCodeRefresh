@@ -41,10 +41,15 @@ namespace MarketplaceMVC.Web.Automapper
                .ForMember(o => o.Discription, map => map.MapFrom(vm => vm.Discription))
                .ForMember(o => o.CreatedAccountDate, map => map.MapFrom(vm => vm.CreatedAccountDate))
                .ForMember(o => o.Price, map => map.MapFrom(vm => vm.Price))
+               .ForMember(o => o.UserName, map => map.MapFrom(vm => vm.UserProfile.Name))
+               .ForMember(o => o.UserAvatar32, map => map.MapFrom(vm => vm.UserProfile.Avatar32))
+               .ForMember(o => o.UserAvatar64, map => map.MapFrom(vm => vm.UserProfile.Avatar64))
+               .ForMember(o => o.UserAvatar96, map => map.MapFrom(vm => vm.UserProfile.Avatar96))
                 .ForMember(o => o.ShortUrl, map => map.MapFrom((vm) => GetSplitedUrl(vm.Url,'/',4)));
 
             CreateMap<Offer, DetailsOfferViewModel>()
                 .ForMember(o => o.ShortUrl, map => map.MapFrom(vm => GetSplitedUrl(vm.Url, '/', 4)))
+                .ForPath(o => o.Game, map => map.MapFrom(vm => vm.Game.Name))
                 .ForPath(o => o.UserId, map => map.MapFrom(vm => vm.UserProfile.Id))
                 .ForPath(o => o.UserName, map => map.MapFrom(vm => vm.UserProfile.Name));
 

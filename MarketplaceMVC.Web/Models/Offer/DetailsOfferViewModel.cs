@@ -17,6 +17,9 @@ namespace MarketplaceMVC.Web.Models.Offer
         [Display(Name = "Описание")]
         public string Discription { get; set; }
 
+        [Display(Name = "Просмотры")]
+        public int Views { get; set; }
+
         [Display(Name = "Являестся ли аккаунт вашим основным (личный)?")]
         public bool PersonalAccount { get; set; }
 

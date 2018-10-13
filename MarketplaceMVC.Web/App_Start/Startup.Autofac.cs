@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
+using MarketplaceMVC.Web.Hangfire;
+using Hangfire;
 
 namespace MarketplaceMVC.Web
 {
@@ -25,8 +27,9 @@ namespace MarketplaceMVC.Web
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            var container = builder.Build();
 
+            var container = builder.Build();
+            GlobalConfiguration.Configuration.UseActivator(new MarketplaceMVCJobActivator(container));
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             app.UseAutofacMiddleware(container);

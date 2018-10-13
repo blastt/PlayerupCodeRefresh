@@ -15,6 +15,11 @@ namespace MarketplaceMVC.Web.Models.Offer
     }
     public class OfferListViewModel
     {
+        public string GameName { get; set; }
+
+        public SearchOfferViewModel SearchInfo { get; set; }
+        public PageInfoViewModel PageInfo { get; set; }
+
         public IEnumerable<OfferViewModel> Offers { get; set; } = new List<OfferViewModel>();
         public IList<SelectListItem> Games { get; set; } = new List<SelectListItem>();
         public IEnumerable<SelectListItem> SortBy { get; set; }

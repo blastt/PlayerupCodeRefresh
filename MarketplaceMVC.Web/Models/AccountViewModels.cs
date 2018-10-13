@@ -51,22 +51,25 @@ namespace MarketplaceMVC.Web.Models
 
     public class LoginViewModel
     {
-        [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Required(ErrorMessage = "Введите имя пользователя или почту")]
+        [Display(Name = "Имя пользователя или почта")]
+        public string LoginOrEmail { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Введите пароль")]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомнить меня")]
         public bool RememberMe { get; set; }
     }
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Login")]
+        public string Login { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

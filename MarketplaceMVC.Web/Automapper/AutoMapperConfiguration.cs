@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MarketplaceMVC.Web.Areas.Admin.Automapper;
 using MarketplaceMVC.Web.Areas.User.Automapper;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,9 @@ namespace MarketplaceMVC.Web.Automapper
 
                 x.AddProfile<DomainToViewModelUserMappingProfile>();
                 x.AddProfile<ViewModelToDomainUserMappingProfile>();
+
+                x.AddProfile<DomainToViewModelAdminMappingProfile>();
+                //x.AddProfile<ViewModelToDomainAdminMappingProfile>();
 
             });
         }

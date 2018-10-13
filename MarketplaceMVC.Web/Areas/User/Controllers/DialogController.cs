@@ -12,7 +12,7 @@ using System.Web.Mvc;
 
 namespace MarketplaceMVC.Web.Areas.User.Controllers
 {
-    [Authorize]
+    
     public class DialogController : Controller
     {
         private readonly IDialogService dialogService;

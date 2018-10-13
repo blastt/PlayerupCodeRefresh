@@ -7,13 +7,13 @@ namespace MarketplaceMVC.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class Ccc : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Ccc));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808270939493_InitialCreate"; }
+            get { return "201809181939373_Ccc"; }
         }
         
         string IMigrationMetadata.Source

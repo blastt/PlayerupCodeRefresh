@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -27,8 +28,13 @@ namespace MarketplaceMVC.Web.Areas.User.Models.Offer
 
         public string ShortUrl { get; set; }
 
+        [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
         public bool SellerPaysMiddleman { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime DeletedDate { get; set; }
     }
 }

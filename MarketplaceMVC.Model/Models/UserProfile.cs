@@ -8,9 +8,9 @@ namespace MarketplaceMVC.Model.Models
 {
     public class UserProfile : BaseEntity
     {
-        public string Avatar32Path { get; set; }
-        public string Avatar48Path { get; set; }
-        public string Avatar96Path { get; set; }
+        public string Avatar32 { get; set; }
+        public string Avatar64 { get; set; }
+        public string Avatar96 { get; set; }
 
         public int PositiveFeedbackCount
         {

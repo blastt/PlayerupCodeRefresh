@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <div class="mt-3">Предложений найдено @Model.Offers.Count()</div>
+        <div class="mt-3 font-weight-bold"><span class="text-primary">@Model.Offers.Count()</span> предложений найдено </div>
 
     </div>
     <div class="col-lg-2">
@@ -36,10 +36,10 @@
                             <div class="offer-user">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 64px" alt="Alternate Tex" />
+                                        <img class="rounded-circle" src="~/Content/Images/Avatars/defa.png" alt="Alternate Tex" />
                                     </div>
                                     <div class="col-sm-6">
-                                        <div>Blast</div>
+                                        <div>@offer.UserName</div>
                                         <div>Рейтинг: 12</div>
                                         <div class="badge badge-primary">Online</div>
                                     </div>
@@ -50,17 +50,27 @@
                         </div>
                         <div class="col-md-5">
                             <div class="offer-description">
-                                <div>Без бана @Html.Check(offer.IsBanned)</div>
+                                <div>Без бана @Html.Check(!offer.IsBanned)</div>
                                 <div>Личный @Html.Check(offer.PersonalAccount)</div>
                                 <div>Гарант оплачен @Html.Check(offer.SellerPaysMiddleman)</div>
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="offer-price">
-                                <div>@Html.DisplayFor(m => offer.Price)</div>
-                                <a class="btn btn-primary" href="#">Купить</a>
-                                <a class="btn btn-primary" href="#">Детали</a>
-                            </div>
+        
+                                <div class="row text-center">
+                                    <div class="col-sm-12">
+                                        <div class=" offer-price">
+                                            @Html.DisplayFor(m => offer.Price) руб.
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <a class="btn btn-details" href="@Url.Action("Buy","Checkout", new { id = offer.Id })">
+                                                <i class="fas fa-shopping-cart"></i> Купить
+                                            
+                                        </a>
+                                    </div>
+                                </div>                                        
                         </div>
                     </div>
 
@@ -68,6 +78,9 @@
             }
 
         </div>
+    <div class="col-lg-12">
+        @Html.PagedListPager(,)
+    </div>
 
 </div>
 

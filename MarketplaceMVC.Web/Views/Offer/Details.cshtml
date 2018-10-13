@@ -6,16 +6,25 @@
 }
 
 <div class="row">
+    <div class="col-lg-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Домашняя</a></li>
+                <li class="breadcrumb-item"><a href="#">@Model.Game Аккаунты</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Header</li>
+            </ol>
+        </nav>
+    </div>
     <div class="col-lg-3">
-        <div class="card-custom">
+        <div class="card-custom description-card mb-3">
             <div class="text-center mb-2">
                 <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 64px" alt="Alternate Tex" />
             </div>
-            <div class="text-center font-weight-bold">
-                <a href="@Url.Action("Details","UserProfile",new { id = Model.UserId })">Blast</a>
+            <div class="text-center font-weight-bold mb-2">
+                <a href="@Url.Action("Details","UserProfile",new { name = Model.UserName })">Blast</a>
             </div>
-            <div class="text-center">
-                <a class="btn btn-primary" href="#"><i class="fas fa-envelope"></i> Написать</a>
+            <div class="text-center mb-2">
+                <button id="contact" class="btn btn-message"><i class="fas fa-envelope"></i> Написать</button>
             </div>
             <table class="table" style="font-size: 14px">
                 <tr>
@@ -39,8 +48,8 @@
         </div>
     </div>
     <div class="col-lg-5">
-        
-        <div class="card-custom">
+
+        <div class="card-custom description-card mb-3">
             <div class="row">
                 <div class="col-lg-12">
                     <table class="table" style="font-size: 14px">
@@ -64,12 +73,6 @@
                             <td><i class="fas fa-calendar-alt mr-2"></i> Дата создания</td>
                             <td class="text-right align-middle font-weight-bold">12.12.2017</td>
                         </tr>
-                    </table>
-                </div>
-                
-                <div class="col-lg-12">
-                    <table class="table table-checks mb-0" style="font-size: 14px">
-                        
                         <tr>
                             <td>Без бана</td>
                             <td class="text-right">@Html.Check(true)</td>
@@ -84,14 +87,39 @@
                         </tr>
                     </table>
                 </div>
+
+
             </div>
-            
+
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="card-custom-details">
-
+    <div class="col-lg-4 mb-4">
+        <div class="card-custom-details text-center">
+            <div class="font-weight-bold" style="font-size: 24px; padding-top: 100px">
+                @Model.Price грн.
+            </div>
+            <div>
+                <a class="btn btn-message" href="#"><i class="fas fa-shopping-cart"></i> Купить</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card-custom card-offer-description">
+            <div class="offer-description-header">
+                <h3>@Model.Header</h3>
+            </div>
+            
+            <div class="offer-description-text">
+                @Model.Discription
+            </div>
+            <div class="offer-description-views font-size-14">
+                Просмотры: <span class="font-weight-bold">@Model.Views</span>
+            </div>
         </div>
     </div>
 </div>
 
+@section scripts
+{
+    <script type="text/javascript" src="~/Scripts/jquery-modal-send.js"></script>
+}

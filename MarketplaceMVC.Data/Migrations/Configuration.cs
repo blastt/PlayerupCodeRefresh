@@ -10,7 +10,6 @@ namespace MarketplaceMVC.Data.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "MarketplaceMVC.Data.EF.ApplicationContext";
         }
 
         protected override void Seed(MarketplaceMVC.Data.EF.ApplicationContext context)

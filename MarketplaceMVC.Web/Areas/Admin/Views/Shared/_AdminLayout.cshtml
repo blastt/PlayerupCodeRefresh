@@ -17,7 +17,14 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="@Url.Action("Create","Game")">Игры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("List","UserProfile")">Пользователи</a>
+                </li>
+            </ul>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto"></ul>
                 @Html.Partial("_LoginPartial")
@@ -26,6 +33,12 @@
 
     </nav>
     <div class="container body-content">
+        @if (TempData["Message"] != null)
+        {
+        <div class="alert alert-primary" role="alert">
+            @TempData["Message"]
+        </div>
+        }
         @RenderBody()
 
         <footer></footer>

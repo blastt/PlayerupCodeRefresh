@@ -14,10 +14,12 @@ namespace MarketplaceMVC.Web.Areas.User
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+
             context.MapRoute(
                 "User_default",
-                "User/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "User/{controller}/{action}",
+                new { controller = "Dialog",action = "Inbox" },
+                namespaces: new[] { "MarketplaceMVC.Web.Areas.User.Controllers" }
             );
         }
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MarketplaceMVC.Model.Models;
 using MarketplaceMVC.Service;
+using MarketplaceMVC.Web.Hangfire;
 using MarketplaceMVC.Web.Models.Offer;
 using Microsoft.AspNet.Identity;
 using System;
@@ -18,6 +19,8 @@ namespace MarketplaceMVC.Web.Controllers
         private readonly IOfferService offerService;
         private readonly IGameService gameService;
         private readonly IUserProfileService userProfileService;
+
+        private const int pageSize = 4;
         // GET: Offer
         public OfferController(IOfferService offerService, IUserProfileService userProfileService, IGameService gameService)
         {
@@ -27,40 +30,16 @@ namespace MarketplaceMVC.Web.Controllers
         }
 
 
-        public async Task<ActionResult> List()
+        public async Task<ActionResult> List(string game = "csgo")
         {
-            var games = await gameService.GetAllGamesAsync();
-            var offers = await offerService.GetAllOffersAsync();
+            var offers = await offerService.GetOffersAsync(o => o.Game.Value == game, i => i.Game, i => i.UserProfile);
             var model = new OfferListViewModel();
-
-            Dictionary<char, List<string>> gameNames = new Dictionary<char, List<string>>();
-            IList<Char> letters = new List<Char>()
+            var gameObj = gameService.GetGameByValue(game);
+            model.SearchInfo = new SearchOfferViewModel
             {
-                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-                'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
-                'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-                'Y', 'Z'
+                Game = game
             };
-
-            var sortedGames = games.OrderBy(g => g.Name);
-
-
-            foreach (var letter in letters)
-            {
-                gameNames.Add(letter, sortedGames.Where(g => g.Name.FirstOrDefault() == letter).Select(g => g.Name).ToList());
-            }
-            
-            ViewData["Letters"] = gameNames;
-            foreach (var game in (await gameService.GetAllGamesAsync()).OrderBy(g => g.Rank).ToList())
-            {
-                model.Games.Add(
-                    new SelectListItem
-                    {
-                        Value = game.Value,
-                        Text = game.Name
-                    }
-                );
-            }
+            model.GameName = gameObj == null ? "" : gameObj.Name;
             model.Offers = Mapper.Map<IEnumerable<Offer>, IEnumerable<OfferViewModel>>(offers);
             return View(model);
         }
@@ -68,10 +47,9 @@ namespace MarketplaceMVC.Web.Controllers
         public async Task<ActionResult> OfferSearch(SearchOfferViewModel search)
         {
             Sort sort = (Sort)Enum.Parse(typeof(Sort), search.SortBy, true);
-            Game game = gameService.GetGameByValue(search.Game);
-            var test = await offerService.GetAllOffersAsync();
+  
 
-            List<Offer> offers = await offerService.GetAllOffersAsync(i => i.Game, i => i.UserProfile);
+            List<Offer> offers = await offerService.GetOffersAsync(o => o.Game.Value == search.Game ,i => i.Game, i => i.UserProfile);
 
             if (search.PersonalAccount)
             {
@@ -117,7 +95,7 @@ namespace MarketplaceMVC.Web.Controllers
 
             var model = new OfferListViewModel()
             {
-                Offers = modelOffers
+                Offers = modelOffers.Skip((search.Page - 1) * pageSize).Take(pageSize).ToList()
             };
 
             
@@ -140,7 +118,7 @@ namespace MarketplaceMVC.Web.Controllers
         public async Task<ActionResult> Create()
         {
             var model = new CreateOfferViewModel();
-            foreach (var game in (await gameService.GetAllGamesAsync()).OrderBy(g => g.Rank))
+            foreach (var game in (await gameService.GetAllGamesAsync()).OrderBy(g => g.Name))
             {
                 model.Games.Add(
                     new SelectListItem
@@ -166,7 +144,12 @@ namespace MarketplaceMVC.Web.Controllers
                 offer.Game = game;
                 offerService.CreateOffer(offer);
                 offerService.SaveOffer();
+                if (Request.Url != null)
+                    offer.JobId = MarketplaceMVCHangfire.SetDeactivateOfferJob(offer.Id,
+                        Url.Action("Activate", "Offer", new { id = offer.Id }, Request.Url.Scheme), TimeSpan.FromDays(30));
+                offerService.SaveOffer();
             }
+
             return View(model);
         }
 
@@ -175,10 +158,11 @@ namespace MarketplaceMVC.Web.Controllers
         {
             if (id != null)
             {
-                Offer offer = await offerService.GetOfferAsync(id.Value, i => i.UserProfile);
+                Offer offer = await offerService.GetOfferAsync(id.Value, i => i.UserProfile, i => i.Game);
                 if (offer != null)
                 {
                     var model = Mapper.Map<Offer, DetailsOfferViewModel>(offer);
+                    
                     return View(model);
                 }
             }

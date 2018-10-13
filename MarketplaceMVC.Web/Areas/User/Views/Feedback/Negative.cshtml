@@ -1,8 +1,12 @@
 ﻿@model MarketplaceMVC.Web.Areas.User.Models.Feedback.FeedbackListViewModel
 @{
     ViewBag.Title = "Negative";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
 }
+<div class="page-info">
+    <h2>Отзывы</h2>
+    <p class="lead">Здесь отображается информация по отзывам</p>
+</div>
 <div class="card-custom-account">
     @{ Html.RenderPartial("_Menu"); }
     @{ Html.RenderPartial("_FeedbackMenu", Model); }

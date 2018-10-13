@@ -1,28 +1,63 @@
 ﻿@model MarketplaceMVC.Web.Areas.User.Models.Offer.OfferListViewModel
 @{
     ViewBag.Title = "Active";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
 }
+<div class="page-info">
+    <h2>Предложения</h2>
+    <p class="lead">Здесь отображается информация по предложениям</p>
+</div>
 <div class="card-custom-account">
+
     @{ Html.RenderPartial("_Menu"); }
     @{ Html.RenderPartial("_OfferMenu", Model); }
-    <table class="table">
+    <table class="table text-center">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th class="account-offer-game">Игра</th>
+                <th class="account-offer-header"></th>
+                <th class="account-offer-date">Дата</th>
+                <th class="account-offer-price">Цена</th>
+
             </tr>
         </thead>
         <tbody>
             @foreach (var offer in Model.Offers)
             {
                 <tr>
-                    <th scope="row">1</th>
-                    <td>@offer.Header</td>
-                    <td>@offer.ShortUrl</td>
-                    <td>@offer.Price</td>
+                    <td class="align-middle">@offer.Game</td>
+                    <td>
+                        <div class="row text-left">
+                            <div class="col-sm-12">
+                                <span>
+                                    @offer.Header
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="row text-left">
+                            <div class="col-sm-12">
+                                <a class="font-size-12 mr-3" href="@Url.Action("Details", "Offer", new { id = offer.Id, area = "" })"><i class="color-dark fas fa-eye"></i> Просмотреть</a>
+                                <a class="font-size-12 mr-3" href="@Url.Action("Edit", "Offer", new { id = offer.Id, area = "" })"><i class="color-dark fas fa-edit"></i> Редактировать</a>
+                                <a class="font-size-12 mr-3" href="@Url.Action("Deactivate", "Offer", new { id = offer.Id, area = "" })"><i class="color-dark fas fa-times-circle"></i> Деактивировать</a>
+                            </div>
+
+                        </div>
+                    </td>
+                    <td>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span class="font-size-12">С: @offer.CreatedDate.ToShortDateString()</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <span class="font-size-12">До: @offer.DeletedDate.ToShortDateString()</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="align-middle"><span class="text-700">@Html.DisplayFor(m => offer.Price)</span> </td>
+
                 </tr>
             }
 

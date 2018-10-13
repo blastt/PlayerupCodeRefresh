@@ -14,8 +14,9 @@ namespace MarketplaceMVC.Web.Areas.Admin
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
+
             context.MapRoute(
-                "Admin_default",
+                "Admin_default1",
                 "Admin/{controller}/{action}",
                 new { action = "Create", controller = "Game" }
             );

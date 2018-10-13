@@ -1,41 +1,44 @@
 ﻿@model MarketplaceMVC.Web.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    Layout = "_AuthLayout.cshtml";
+    ViewBag.Title = "Регистрация";
 }
 
-<h2>@ViewBag.Title.</h2>
-
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+<div class="row">
+    <div class="col-lg-5 auth-box" style="float: none; margin: 0 auto">
+        @Html.Partial("_AuthMenu")
+        <div class="auth-body">
+            <div class="row">
+                <div class="col-md-12">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Login, new { @class = "form-control form-control-md", placeholder = "Имя пользователя" })
+                            @Html.ValidationMessageFor(m => m.Login)
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-md", placeholder = "Почта" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-md", placeholder = "Пароль" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                        <div class="form-group">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control form-control-md", placeholder = "Подтверждение пароля" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                        </div>
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-submit" value="Зарегистрироваться" />
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
-
+</div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+

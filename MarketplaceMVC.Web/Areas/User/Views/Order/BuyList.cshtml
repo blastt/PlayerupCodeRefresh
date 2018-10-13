@@ -1,0 +1,36 @@
+﻿@model MarketplaceMVC.Web.Areas.User.Models.Order.OrderListViewModel
+@{
+    ViewBag.Title = "BuyList";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
+}
+<div class="page-info">
+    <h2>Заказы</h2>
+    <p class="lead">Здесь отображается информация по заказам</p>
+</div>
+<div class="card-custom-account">
+    @{ Html.RenderPartial("_Menu"); }
+    @{ Html.RenderPartial("_OrderMenu", Model); }
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model.Orders)
+            {
+                <tr>
+                    <th scope="row">1</th>
+                    <td>rewrwe</td>
+                    <td>twerew</td>
+                    <td>rewre</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

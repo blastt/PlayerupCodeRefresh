@@ -31,6 +31,10 @@ namespace MarketplaceMVC.Model.Models
 
         public string UserName { get; set; }
 
+        public virtual ICollection<UserRole> Roles { get; }
+        public virtual ICollection<UserClaim> Claims { get; }
+        public virtual ICollection<UserLogin> Logins { get; }
+
         public UserProfile UserProfile { get; set; }
 
         public User()

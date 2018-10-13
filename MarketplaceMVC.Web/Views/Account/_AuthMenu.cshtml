@@ -1,0 +1,15 @@
+﻿<div class="row" style="margin-left: -20px; margin-right: -20px">
+    <div class="col-lg-12">
+        <div class="text-center">
+            <ul class="ul-auth" style="margin: auto">
+                <li>
+                    @Html.ActionLink("Войти", "Login", "Account", null, new { @class = Html.IsSelected(actions: "Login", controllers: "Account") })                        
+                </li>
+                <li>
+                    @Html.ActionLink("Регистрация", "Register", "Account", null, new { @class = Html.IsSelected(actions: "Register", controllers: "Account") })
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

@@ -10,6 +10,8 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 using MarketplaceMVC.Service;
+using System.Collections.Generic;
+using System;
 
 namespace MarketplaceMVC.Web.Controllers
 {
@@ -49,22 +51,67 @@ namespace MarketplaceMVC.Web.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            // Сбои при входе не приводят к блокированию учетной записи
+            // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
+            var user = await userProfileService.GetUserProfileAsync(m => model.LoginOrEmail == m.User.Email || model.LoginOrEmail == m.User.UserName, p => p.User);
+            if (user != null)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                var userName = user.Name;
+
+                if (await _userManager.IsEmailConfirmedAsync(user.Id))
+                {
+                    var result = await _signInManager.PasswordSignInAsync(userName, model.Password, model.RememberMe, shouldLockout: false);
+                    switch (result)
+                    {
+                        case SignInStatus.Success:
+                            // online users
+                            if (HttpRuntime.Cache["LoggedInUsers"] != null)
+                            {
+                                //get the list of logged in users from the cache
+                                var loggedInUsers = (Dictionary<string, DateTime>)
+                                HttpRuntime.Cache["LoggedInUsers"];
+
+                                if (!loggedInUsers.ContainsKey(userName))
+                                {
+                                    //add this user to the list
+
+                                    loggedInUsers.Add(userName, DateTime.Now);
+                                    //add the list back into the cache
+                                    HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                                }
+                            }
+
+                            //the list does not exist so create it
+                            else
+                            {
+                                //create a new list
+                                var loggedInUsers = new Dictionary<string, DateTime> { { userName, DateTime.Now } };
+                                //add this user to the list
+                                //add the list into the cache
+                                HttpRuntime.Cache["LoggedInUsers"] = loggedInUsers;
+                            }
+                            return RedirectToAction("buy", "offer");
+                        case SignInStatus.LockedOut:
+                            return View("Lockout");
+                        case SignInStatus.RequiresVerification:
+                            return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                        case SignInStatus.Failure:
+                        default:
+                            ModelState.AddModelError("", @"Неудачная попытка входа.");
+                            return View(model);
+                    }
+                }
+                else
+                {
+                    string code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code, email = user.User.Email }, protocol: Request.Url.Scheme);
+                    await _userManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
+                    ModelState.AddModelError("", "Нужно активировать ваш аккаунт. Перейдите по ссылке, которую мы вам выслали на почту");
                     return View(model);
+                }
             }
+            ModelState.AddModelError("", "Неудачная попытка входа.");
+            return View(model);
         }
 
         //
@@ -127,11 +174,20 @@ namespace MarketplaceMVC.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                if (userProfileService.GetUserProfileByName(model.Login) != null)
+                {
+                    return HttpNotFound("User exists!");
+                }
                 var userProfile = new UserProfile();
-                var user = new User { UserName = model.Email, Email = model.Email, UserProfile = userProfile };
+                var user = new User { UserName = model.Login, Email = model.Email, UserProfile = userProfile };
+                string urlPath32 = Url.Content("~/Content/Images/Avatars/Default32.png");
+                string urlPath48 = Url.Content("~/Content/Images/Avatars/Default48.png");
+                string urlPath96 = Url.Content("~/Content/Images/Avatars/Default96.png");
                 userProfile.Id = user.Id;
                 userProfile.Name = user.UserName;
+                userProfile.Avatar32 = urlPath32;
+                userProfile.Avatar64 = urlPath48;
+                userProfile.Avatar96 = urlPath96;
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -142,6 +198,9 @@ namespace MarketplaceMVC.Web.Controllers
                     // string code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await _userManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    string code = await _userManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code, email = user.Email }, protocol: Request.Url.Scheme);
+                    await _userManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
                     return RedirectToAction("Index", "Home");
                 }

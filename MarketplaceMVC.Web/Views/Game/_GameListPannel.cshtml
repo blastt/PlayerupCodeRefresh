@@ -1,0 +1,64 @@
+﻿@model Dictionary<char, List<KeyValuePair<string, string>>>
+
+<nav class="game-menu">
+    <ul class="section-list">
+        <li>
+            <a href="#" class="text-center">
+
+
+                <div style="font-size: 18px">
+                   
+                        <div>
+                            <i class="fas fa-gamepad"></i> <br/>
+                        
+                                                         
+                        </div>
+                  
+                    
+                    
+                </div>
+            </a>
+
+            <ul class="letter-list">
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="#">@item.Key</a>
+                        <ul class="game-list">
+                            @foreach (var game in item.Value)
+                            {
+                                <li><a href="@Url.Action("List","Offer", new { area = "", game = game.Key })">@game.Value</a></li>
+                            }
+
+                        </ul>
+                    </li>
+                }
+
+            </ul>
+
+
+        </li>
+        <li>
+            <a href="#">CS:GO</a>
+        </li>
+        <li>
+            <a href="#">DOTA 2</a>
+
+        </li>
+        <li>
+            <a href="#">League Of Lagends</a>
+        </li>
+        <li>
+            <a href="#">World Of Tanks</a>
+        </li>
+        <li>
+            <a href="#">Warframe</a>
+        </li>
+        <li>
+            <a href="#">Path of Exile</a>
+        </li>
+        <li>
+            <a href="#">World Of Warcraft</a>
+        </li>
+    </ul>
+</nav>

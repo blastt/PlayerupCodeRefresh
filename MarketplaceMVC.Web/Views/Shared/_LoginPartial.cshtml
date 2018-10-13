@@ -11,25 +11,47 @@
 
 <ul class="nav navbar-nav navbar-right">
     <li class="nav-item position-relative" id="orders">
-        <a href="@Url.Action("OrderBuy", "Order")" class="nav-link">
-            @{
-                
-            }
-            <i class="fas fa-bell" style="font-size: 28px"></i>
+        <a href="@Url.Action("OrderBuy", "Order",new { area = "" })" class="nav-link">
+            <div class="top-counter">
+                9+
+            </div>
+            <i class="fas fa-bell" style="font-size: 24px"></i>
         </a>
     </li>
     <li class="nav-item position-relative" id="messagess">
-        <a href="@Url.Action("Inbox", "Message")" class="nav-link">
-            @{
-                
-            }
-            <i class="fas fa-comment-dots" style="font-size: 28px"></i>
+        <a href="@Url.Action("Inbox", "Message",new { area = "" })" class="nav-link">
+            <div class="top-counter">
+                3
+            </div>
+            <i class="fas fa-comment-dots" style="font-size: 24px"></i>
         </a>
     </li>
     <li class="nav-item">
-        @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class= "nav-link" })
+        <a class="nav-link" href="#">@Html.Action("Balance", "UserProfile",new { area="" })</a>
+
     </li>
-    <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Выход</a></li>
+    <li class="nav-item top-avatar">
+        <a href="@Url.Action("Inbox", "Message",new { area="" })">
+            <img alt="Аватар" class="rounded-circle" src="~/Content/Images/Avatars/@Html.Action("Photo", "UserProfile" , new {area="", id = User.Identity.GetUserId<int>() })" />
+        </a>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" id="download" aria-expanded="true" aria-atomic="true">
+            @User.Identity.Name
+            <span class="caret"></span>
+        </a>
+        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 45px, 0px); top: 0px; left: 0px; will-change: transform;">
+            @Html.ActionLink("Сообщения", "Inbox", "Dialog", new { area = "User" }, new { @class = "dropdown-item" })
+            @Html.ActionLink("Предложения", "Active", "Offer", new { area = "User" }, new { @class = "dropdown-item" })
+            @Html.ActionLink("Заказы", "OrderBuy", "Order", new { area = "User" }, new { @class = "dropdown-item" })
+            @Html.ActionLink("Отзывы", "All", "Feedback", new { area = "User" }, new { @class = "dropdown-item" })
+            @Html.ActionLink("Настройки", "Settings", "Account", new { area = "User" }, new { @class = "dropdown-item" })
+
+            @Html.ActionLink("Фото", "Upload", "UserProfile", new { area = "" }, new { @class = "dropdown-item" })
+            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Выйти</a>
+        </div>
+    </li>
 </ul>
     }
 }
@@ -42,18 +64,22 @@ else
             <div class=" input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text" name="Email" class="form-control mr-sm-2" placeholder="Логин или Email" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" name="LoginOrEmail" class="form-control mr-sm-2" placeholder="Логин или Email" aria-label="Username" aria-describedby="basic-addon1">
         </div>
 
         <div class="input-group input-group-sm">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon2"><i class="fas fa-key"></i></span>
             </div>
-            <input type="text" name="Password" class="form-control mr-sm-2" placeholder="Пароль" aria-label="Password" aria-describedby="basic-addon2">
+            <input type="password" name="Password" class="form-control mr-sm-2" placeholder="Пароль" aria-label="Password" aria-describedby="basic-addon2">
         </div>
         <div class="form-group  form-check mr-sm-2">
-            <input type="checkbox" class="form-check-input" name="RememberMe" id="RememberMe">
-            <label class="form-check-label col-form-label-sm" for="RememberMe">Запомнить меня?</label>
+            <div class="custom-control custom-checkbox">
+                @Html.CheckBox("RememberMe", false, new { @class = "custom-control-input", id = "RememberMe" })
+                <label class="custom-control-label" for="RememberMe">
+                    Запомнить меня?
+                </label>
+            </div>
         </div>
 
         <button class="btn btn-sm btn-primary my-2 my-sm-0" type="submit"><i class="fas fa-sign-in-alt"></i> Войти</button>

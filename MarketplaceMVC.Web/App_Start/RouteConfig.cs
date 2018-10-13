@@ -14,11 +14,40 @@ namespace MarketplaceMVC.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                name: null,
+                url: "account/sell",
+                defaults: new { controller = "Offer", action = "Create" },
                 namespaces: new[] { "MarketplaceMVC.Web.Controllers" }
             );
+            routes.MapRoute(
+                name: null,
+                url: "accounts/{game}",
+                defaults: new { controller = "Offer", action = "List" },
+                namespaces: new[] { "MarketplaceMVC.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: null,
+                url: "o/{id}",
+                defaults: new { controller = "Offer", action = "Details" },
+                namespaces: new[] { "MarketplaceMVC.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+                name: null,
+                url: "u/{name}",
+                defaults: new { controller = "UserProfile", action = "Details" },
+                namespaces: new[] { "MarketplaceMVC.Web.Controllers" }
+            );
+            routes.MapRoute(
+                name: "Default",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Home", action = "Index" },
+                namespaces: new[] { "MarketplaceMVC.Web.Controllers" }
+            );
+
+
+            
         }
     }
 }

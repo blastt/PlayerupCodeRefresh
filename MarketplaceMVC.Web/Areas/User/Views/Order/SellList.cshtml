@@ -1,9 +1,12 @@
 ﻿@model MarketplaceMVC.Web.Areas.User.Models.Order.OrderListViewModel
 @{
     ViewBag.Title = "SellList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
 }
-
+<div class="page-info">
+    <h2>Заказы</h2>
+    <p class="lead">Здесь отображается информация по заказам</p>
+</div>
 <div class="card-custom-account">
     @{ Html.RenderPartial("_Menu"); }
     @{ Html.RenderPartial("_OrderMenu", Model); }

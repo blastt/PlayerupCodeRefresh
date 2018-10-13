@@ -11,7 +11,10 @@ namespace MarketplaceMVC.Data.EF
 {
     public class ApplicationContext : DbContext
     {
-        public ApplicationContext() : base("DefaultConnection") { }
+        public ApplicationContext() : base("DefaultConnection")
+        {
+
+        }
 
         private static void Magic()
         {

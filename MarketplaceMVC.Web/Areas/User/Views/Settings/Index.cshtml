@@ -1,8 +1,12 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/User/Views/Shared/_UserLayout.cshtml";
 }
+<div class="page-info">
+    <h2>Настройки</h2>
+    <p class="lead">Здесь вы можете изменить настройки учетной записи</p>
+</div>
 <div class="card-custom-account">
     @{ Html.RenderPartial("_Menu"); }
     <div class="settings-container">

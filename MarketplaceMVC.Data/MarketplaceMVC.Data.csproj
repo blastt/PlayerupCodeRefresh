@@ -81,13 +81,29 @@
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201808270939493_InitialCreate.cs" />
-    <Compile Include="Migrations\201808270939493_InitialCreate.Designer.cs">
-      <DependentUpon>201808270939493_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\201809181450394_InitialCreate.cs" />
+    <Compile Include="Migrations\201809181450394_InitialCreate.Designer.cs">
+      <DependentUpon>201809181450394_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808281449475_Init.cs" />
-    <Compile Include="Migrations\201808281449475_Init.Designer.cs">
-      <DependentUpon>201808281449475_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201809181515075_Cascade.cs" />
+    <Compile Include="Migrations\201809181515075_Cascade.Designer.cs">
+      <DependentUpon>201809181515075_Cascade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809181515564_Cascade2.cs" />
+    <Compile Include="Migrations\201809181515564_Cascade2.Designer.cs">
+      <DependentUpon>201809181515564_Cascade2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809181522500_Cascade3.cs" />
+    <Compile Include="Migrations\201809181522500_Cascade3.Designer.cs">
+      <DependentUpon>201809181522500_Cascade3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809181939373_Ccc.cs" />
+    <Compile Include="Migrations\201809181939373_Ccc.Designer.cs">
+      <DependentUpon>201809181939373_Ccc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809301504230_AvatarName.cs" />
+    <Compile Include="Migrations\201809301504230_AvatarName.Designer.cs">
+      <DependentUpon>201809301504230_AvatarName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,14 +127,6 @@
     <Compile Include="Repositories\WithdrawRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808270939493_InitialCreate.resx">
-      <DependentUpon>201808270939493_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808281449475_Init.resx">
-      <DependentUpon>201808281449475_Init.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -127,6 +135,26 @@
       <Project>{1028f2bf-359c-490b-a737-3aa08e727d31}</Project>
       <Name>MarketplaceMVC.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809181450394_InitialCreate.resx">
+      <DependentUpon>201809181450394_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809181515075_Cascade.resx">
+      <DependentUpon>201809181515075_Cascade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809181515564_Cascade2.resx">
+      <DependentUpon>201809181515564_Cascade2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809181522500_Cascade3.resx">
+      <DependentUpon>201809181522500_Cascade3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809181939373_Ccc.resx">
+      <DependentUpon>201809181939373_Ccc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809301504230_AvatarName.resx">
+      <DependentUpon>201809301504230_AvatarName.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

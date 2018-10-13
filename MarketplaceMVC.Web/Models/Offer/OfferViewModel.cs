@@ -16,6 +16,8 @@ namespace MarketplaceMVC.Web.Models.Offer
         [Display(Name = "Заголовок")]
         public string Header { get; set; }
 
+        public string UserName { get; set; }
+
         [Display(Name = "Описание")]
         public string Discription { get; set; }
 
@@ -41,5 +43,9 @@ namespace MarketplaceMVC.Web.Models.Offer
 
         [Display(Name = "Платите ли вы за гаранта?")]
         public bool SellerPaysMiddleman { get; set; }
+
+        public string UserAvatar32 { get; set; }
+        public string UserAvatar64 { get; set; }
+        public string UserAvatar96 { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
         {
             int currentUserId = User.Identity.GetUserId<int>();
             var model = new Models.Offer.OfferListViewModel();
-            var offers = await offerService.GetOffersAsync(o => o.State == OfferState.active);
+            var offers = await offerService.GetOffersAsync(o => o.State == OfferState.active, i => i.Game);
             model.CountOfActive = offers.Count;
             model.CountOfClosed = (await offerService.GetOffersAsync(o => o.State == OfferState.closed)).Count;
             model.CountOfInactive = (await offerService.GetOffersAsync(o => o.State == OfferState.inactive)).Count;
@@ -45,7 +45,7 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
         {
             int currentUserId = User.Identity.GetUserId<int>();
             var model = new Models.Offer.OfferListViewModel();
-            var offers = await offerService.GetOffersAsync(o => o.State == OfferState.inactive);
+            var offers = await offerService.GetOffersAsync(o => o.State == OfferState.inactive, i => i.Game);
             model.CountOfInactive = offers.Count;
             model.CountOfClosed = (await offerService.GetOffersAsync(o => o.State == OfferState.closed)).Count;
             model.CountOfActive = (await offerService.GetOffersAsync(o => o.State == OfferState.active)).Count;
@@ -57,7 +57,7 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
         {
             int currentUserId = User.Identity.GetUserId<int>();
             var model = new Models.Offer.OfferListViewModel();
-            var offers = await offerService.GetOffersAsync(o => o.State == OfferState.closed);
+            var offers = await offerService.GetOffersAsync(o => o.State == OfferState.closed, i => i.Game);
             model.CountOfClosed = offers.Count;
             model.CountOfInactive = (await offerService.GetOffersAsync(o => o.State == OfferState.inactive)).Count;
             model.CountOfActive = (await offerService.GetOffersAsync(o => o.State == OfferState.active)).Count;
