@@ -1,7 +1,6 @@
 ﻿body {
     padding-top: 100px;
     color: #6b6b6b;
-    padding-bottom: 20px;
     background-color: #f6f6f6;
 }
 
@@ -737,4 +736,86 @@ ul.ul-auth li {
 
 .page-info {
     padding-bottom: 15px
+}
+
+.nav-pages{
+
+}
+
+    .nav-pages button {
+        margin-right: 10px;
+        padding: 7px 14px;
+        border: 0px;
+        border-radius: 10px;
+        background-color: #fff;
+        
+        cursor: pointer
+    }
+
+        .nav-pages button.active {
+            background-color: #82c5e2;
+            color: #fff
+        }
+
+.card-footer {
+    margin-top: 50px;
+    font-size: 12px;
+    z-index: 1030;
+    background-color: #f6f6f6
+}
+
+.ul-footer li {
+    padding: 14px 14px;
+    display: inline;
+}
+
+.ul-footer-social a {
+    text-decoration: none;
+    color: #6b6b6b;
+    font-size: 30px
+}
+
+.ul-footer-social li {
+    padding: 14px 14px;
+    display: inline;
+}
+
+.clickable {
+    cursor: pointer
+}
+
+
+.date-table {
+    text-align: right
+}
+
+.messages-container{
+    padding: 20px
+}
+
+.back {
+    padding: 20px 30px;
+    background: #f6f6f6;
+    border-bottom: 1px solid #e9eaea;
+}
+
+.message-container {
+    padding: 30px;
+    background-color: #fff;
+}
+
+.message-block {
+    background-color: #fbfbfb;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+}
+
+.message-body {
+    border-radius: 6px;
+    padding: 10px;
+    background-color: whitesmoke
 }

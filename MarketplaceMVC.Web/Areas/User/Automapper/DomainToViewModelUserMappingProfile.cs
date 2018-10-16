@@ -34,7 +34,12 @@ namespace MarketplaceMVC.Web.Areas.User.Automapper
                .ForMember(o => o.CountOfNewMessages, map => map.MapFrom(vm => vm.Messages.Where(m => !m.ToViewed)));
 
             CreateMap<Dialog, DetailsDialogViewModel>()
-               .ForMember(o => o.Id, map => map.MapFrom(vm => vm.Id));
+               .ForMember(o => o.Id, map => map.MapFrom(vm => vm.Id))
+
+               .ForMember(o => o.Messages, map => map.MapFrom(vm => vm.Messages))
+               .ForMember(o => o.Companion, map => map.MapFrom(vm => vm.Companion))
+               .ForMember(o => o.Creator, map => map.MapFrom(vm => vm.Creator))
+               .ForMember(o => o.CountOfNewMessages, map => map.MapFrom(vm => vm.Messages.Where(m => !m.ToViewed)));
             //CreateMap<Order, OrderViewModel>()
             //    .ForMember(o => o.ShortUrl, map => map.MapFrom(vm => GetSplitedUrl(vm.Url, '/', 4)))
             //    .ForPath(o => o.UserId, map => map.MapFrom(vm => vm.UserProfile.Id))

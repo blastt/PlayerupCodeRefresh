@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using MarketplaceMVC.Web.Models.UserProfile;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -43,9 +45,8 @@ namespace MarketplaceMVC.Web.Models.Offer
         [Display(Name = "Платите ли вы за гаранта?")]
         public bool SellerPaysMiddleman { get; set; }
 
-        public int UserId { get; set; }
-
-        public string UserName { get; set; }
+       
+        public UserProfileViewModel User { get; set; }
 
     }
 }

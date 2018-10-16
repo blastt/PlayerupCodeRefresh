@@ -1,0 +1,59 @@
+﻿@model MarketplaceMVC.Web.Models.UserProfile.UserProfileViewModel
+@{ 
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "SendSuccess",
+        OnFailure = "SendFailure"
+    };
+}
+<div id="modal-dialog" class="modal">
+    <div class="modal-dialog" role="document">
+        @using (Ajax.BeginForm("Create", "Message", new { area = "User" }, ajaxOptions, new { id = "message-panel" }))
+        {
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Написать сообщение</h4>
+                    <button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+
+                <input type="hidden" id="receiverId" name="ReceiverId" value="@Model.Id" />
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <img alt="Аватар" height="48" width="48" class="img-circle" src="@Model.Avatar64" style="float:left; margin-right: 20px" />
+                        <div>
+                            @Html.ActionLink(Model.Name, "Info", new { })
+                            <p>
+                                @*@Html.GetUserStatus(Model.UserName, new { @class = "badge badge-pill badge-online" }, new { @class = "badge badge-pill badge-offline" })*@
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="messageBody" name="MessageBody" class="form-control" rows="5"></textarea>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-submit" type="submit">Отправить</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div id="m-dialog" class="modal-send">
+    <div class="modal-dialog" role="document">
+        <div id="m-content-send" class="modal-content-send">
+            <div id="m-body" class="modal-body">
+                <span class="text-white text" style="font-size: 18px">Ваше сообщение отправлено</span>
+            </div>
+        </div>
+    </div>
+</div>
+

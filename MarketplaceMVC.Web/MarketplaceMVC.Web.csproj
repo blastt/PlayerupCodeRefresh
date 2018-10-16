@@ -78,6 +78,12 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.3.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.3.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
@@ -283,6 +289,7 @@
     <Compile Include="Areas\User\Models\Offer\OfferViewModel.cs" />
     <Compile Include="Areas\User\Models\Order\OrderListViewModel.cs" />
     <Compile Include="Areas\User\Models\Order\OrderViewModel.cs" />
+    <Compile Include="Areas\User\Models\UserProfile\UserProfileViewModel.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Automapper\AutoMapperConfiguration.cs" />
     <Compile Include="Automapper\DomainToViewModelMappingProfile.cs" />
@@ -325,6 +332,8 @@
     <Compile Include="Models\UserProfile\UserProfileViewModel.cs" />
     <Compile Include="Models\Withdraw\CreateWithdrawViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignalrHubs\IMessageHub.cs" />
+    <Compile Include="SignalrHubs\MessageHub.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -396,6 +405,10 @@
     <Content Include="Areas\Admin\Views\UserProfile\List.cshtml" />
     <Content Include="Areas\Admin\Views\UserProfile\LockUser.cshtml" />
     <Content Include="Areas\User\Views\Order\BuyList.cshtml" />
+    <Content Include="Scripts\jquery.signalR-2.3.0.js" />
+    <Content Include="Scripts\jquery.signalR-2.3.0.min.js" />
+    <Content Include="Scripts\signalr-messages.js" />
+    <Content Include="Views\Shared\_MessageModal.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -403,6 +416,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-modal-send.js" />
+    <Content Include="Scripts\jquery-offer-list.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -487,6 +501,7 @@
     <Content Include="Views\Checkout\SuccessWithdraw.cshtml" />
     <Content Include="Views\Account\_AuthMenu.cshtml" />
     <Content Include="Views\Account\_AuthLayout.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Views\Order\" />
@@ -495,6 +510,7 @@
     <Folder Include="Areas\Middleman\Views\Shared\" />
     <Folder Include="Areas\User\Views\Message\" />
     <Folder Include="Models\Game\" />
+    <Folder Include="Views\Message\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

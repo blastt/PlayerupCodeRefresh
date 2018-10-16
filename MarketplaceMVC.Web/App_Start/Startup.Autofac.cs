@@ -10,6 +10,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using MarketplaceMVC.Web.Hangfire;
 using Hangfire;
+using MarketplaceMVC.Web.SignalrHubs;
 
 namespace MarketplaceMVC.Web
 {
@@ -25,6 +26,7 @@ namespace MarketplaceMVC.Web
             builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
             builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
 
+            builder.RegisterType<MessageHub>().As<IMessageHub>().InstancePerRequest();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
 

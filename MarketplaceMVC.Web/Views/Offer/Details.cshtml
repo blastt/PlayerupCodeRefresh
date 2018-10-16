@@ -3,6 +3,13 @@
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "SendSuccess",
+        OnFailure = "SendFailure"
+    };
 }
 
 <div class="row">
@@ -21,7 +28,7 @@
                 <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 64px" alt="Alternate Tex" />
             </div>
             <div class="text-center font-weight-bold mb-2">
-                <a href="@Url.Action("Details","UserProfile",new { name = Model.UserName })">Blast</a>
+                <a href="@Url.Action("Details", "UserProfile", new { name = Model.User.Name })">Blast</a>
             </div>
             <div class="text-center mb-2">
                 <button id="contact" class="btn btn-message"><i class="fas fa-envelope"></i> Написать</button>
@@ -108,7 +115,7 @@
             <div class="offer-description-header">
                 <h3>@Model.Header</h3>
             </div>
-            
+
             <div class="offer-description-text">
                 @Model.Discription
             </div>
@@ -119,7 +126,11 @@
     </div>
 </div>
 
+
+@{ Html.RenderPartial("_MessageModal", Model.User); }
+
 @section scripts
 {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery-modal-send.js"></script>
 }

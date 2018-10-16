@@ -21,7 +21,7 @@ namespace MarketplaceMVC.Web
         {
             ConfigureAuth(app);
             ConfigureAutofac(app);
-
+            app.MapSignalR();
             AutoMapperConfiguration.Configure();
             MarketplaceMVCHangfire.ConfigureHangfire(app);
 

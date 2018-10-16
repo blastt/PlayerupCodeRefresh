@@ -2,6 +2,7 @@
 using MarketplaceMVC.Model.Models;
 using MarketplaceMVC.Service;
 using MarketplaceMVC.Web.Hangfire;
+using MarketplaceMVC.Web.Models;
 using MarketplaceMVC.Web.Models.Offer;
 using Microsoft.AspNet.Identity;
 using System;
@@ -40,7 +41,14 @@ namespace MarketplaceMVC.Web.Controllers
                 Game = game
             };
             model.GameName = gameObj == null ? "" : gameObj.Name;
-            model.Offers = Mapper.Map<IEnumerable<Offer>, IEnumerable<OfferViewModel>>(offers);
+            model.Offers = Mapper.Map<IEnumerable<Offer>, IEnumerable<OfferViewModel>>(offers).Take(pageSize);
+            model.PageInfo = new PageInfoViewModel
+            {
+
+                PageNumber = 1,
+                PageSize = pageSize,
+                TotalItems = offers.Count()
+            };
             return View(model);
         }
 
@@ -95,7 +103,14 @@ namespace MarketplaceMVC.Web.Controllers
 
             var model = new OfferListViewModel()
             {
-                Offers = modelOffers.Skip((search.Page - 1) * pageSize).Take(pageSize).ToList()
+                Offers = modelOffers.Skip((search.Page - 1) * pageSize).Take(pageSize).ToList(),
+                PageInfo = new PageInfoViewModel
+                {
+
+                    PageNumber = search.Page,
+                    PageSize = pageSize,
+                    TotalItems = modelOffers.Count()
+                }
             };
 
             

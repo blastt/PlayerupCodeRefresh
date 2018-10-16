@@ -50,8 +50,8 @@ namespace MarketplaceMVC.Web.Automapper
             CreateMap<Offer, DetailsOfferViewModel>()
                 .ForMember(o => o.ShortUrl, map => map.MapFrom(vm => GetSplitedUrl(vm.Url, '/', 4)))
                 .ForPath(o => o.Game, map => map.MapFrom(vm => vm.Game.Name))
-                .ForPath(o => o.UserId, map => map.MapFrom(vm => vm.UserProfile.Id))
-                .ForPath(o => o.UserName, map => map.MapFrom(vm => vm.UserProfile.Name));
+                .ForPath(o => o.User.Id, map => map.MapFrom(vm => vm.UserProfile.Id))
+                .ForPath(o => o.User.Name, map => map.MapFrom(vm => vm.UserProfile.Name));
 
 
 

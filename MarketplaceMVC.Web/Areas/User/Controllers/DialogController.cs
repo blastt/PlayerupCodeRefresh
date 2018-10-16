@@ -16,10 +16,12 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
     public class DialogController : Controller
     {
         private readonly IDialogService dialogService;
+        private readonly IMessageService messageService;
         private readonly IUserProfileService userProfileService;
         // GET: Offer
-        public DialogController(IDialogService dialogService, IUserProfileService userProfileService)
+        public DialogController(IDialogService dialogService, IMessageService messageService, IUserProfileService userProfileService)
         {
+            this.messageService = messageService;
             this.dialogService = dialogService;
             this.userProfileService = userProfileService;
         }
@@ -27,7 +29,7 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
         public async Task<ActionResult> Inbox()
         {
             int currentUserId = User.Identity.GetUserId<int>();
-            var dialogs = await dialogService.GetUserDialogsAsync(currentUserId);
+            var dialogs = await dialogService.GetUserDialogsAsync(currentUserId, i => i.Companion, i => i.Creator, i => i.Messages);
             var modelDialogs = Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
             var model = new DialogListViewModel()
             {
@@ -49,20 +51,47 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
             return View(model);
         }
 
-        public async Task<ViewResult> Details(int? id)
+        public async Task<ActionResult> Details(int? id)
         {
+            int currentUserId = User.Identity.GetUserId<int>();
+            int dialogWithUserId = 0;
+            string dialogWithUserImage = null;
             if (id != null)
             {
-                var dialog = await dialogService.GetDialogAsync(id.Value);
-                if (dialog != null)
+                Dialog dialog = await dialogService.GetDialogAsync(d => d.Id == id.Value, i => i.Creator, i => i.Companion, i => i.Messages);
+                if (dialog != null && ((await dialogService.GetUserDialogsAsync(currentUserId)).Count() != 0))
                 {
+
+                    if (dialog.CompanionId == currentUserId)
+                    {
+                        dialogWithUserId = dialog.CreatorId;
+                        dialogWithUserImage = dialog.Creator.Avatar64;
+                    }
+                    else if (dialog.CreatorId == currentUserId)
+                    {
+                        dialogWithUserId = dialog.CompanionId;
+                        dialogWithUserImage = dialog.Companion.Avatar64;
+                    }
+
+                    if (dialogWithUserId == 0)
+                    {
+                        return HttpNotFound();
+                    }
+                    foreach (var message in dialog.Messages.Where(m => m.SenderId != currentUserId))
+                    {
+                        message.ToViewed = true;
+                    }
+                    await messageService.SaveMessageAsync();
                     var model = Mapper.Map<Dialog, DetailsDialogViewModel>(dialog);
+                    model.OtherUserId = dialogWithUserId;
+                    model.OtherUserImage = dialogWithUserImage;
+
                     return View(model);
-                }               
+                }
             }
-            return View();
+            return HttpNotFound();
         }
 
-        
+
     }
 }

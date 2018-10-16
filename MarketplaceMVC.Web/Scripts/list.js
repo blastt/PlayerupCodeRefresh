@@ -1,5 +1,12 @@
-﻿function submitForm(v) {
-    $('#sort').val(v.value);
+﻿function submitForm(sort) {
+    $('#sort').val(sort.value);
+    $('form#search-panel').submit();
+    return false;
+}
+
+function submitFormByPage(page) {
+    
+    $('#page').val(page);
     $('form#search-panel').submit();
     return false;
 }
@@ -63,9 +70,9 @@ function SelectPage(page) {
 }
 
 function SearchOffers() {
-
+    alert("");
     var game = $('#game').val();
-    var page = 1;
+    var page = $('#page').val();
     var sort = $('#sort').val();
     var onlineOnly = $('#online-only').is(':checked');
     var searchInDiscription = $('#serch-in-description').is(':checked');
@@ -89,7 +96,7 @@ function SearchOffers() {
         "priceTo": priceTo
     };
 
-    $.ajax({
+    $('#search-panel').ajaxForm({
         url: '/Offer/OfferSearch',
         type: "POST",
         contentType: "application/json",
@@ -97,7 +104,7 @@ function SearchOffers() {
         dataType: "html",
         success: function (response) {
             var s = $('#sort').val();
-            $('#list').html(response);
+            $('#offers').html(response);
             
         }
     });

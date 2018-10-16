@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <div class="mt-3 font-weight-bold"><span class="text-primary">@Model.Offers.Count()</span> предложений найдено </div>
+        <div class="mt-3 font-weight-bold"><span class="text-primary">@Model.PageInfo.TotalItems</span> предложений найдено </div>
 
     </div>
     <div class="col-lg-2">
@@ -36,7 +36,7 @@
                             <div class="offer-user">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <img class="rounded-circle" src="~/Content/Images/Avatars/defa.png" alt="Alternate Tex" />
+                                        <img class="rounded-circle" src="~/Content/Images/Avatars/@offer.UserAvatar64" alt="Alternate Tex" />
                                     </div>
                                     <div class="col-sm-6">
                                         <div>@offer.UserName</div>
@@ -79,7 +79,7 @@
 
         </div>
     <div class="col-lg-12">
-        @Html.PagedListPager(,)
+       @Html.PagedListPager(Model.PageInfo)
     </div>
 
 </div>
