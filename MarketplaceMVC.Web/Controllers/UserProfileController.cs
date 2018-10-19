@@ -31,7 +31,7 @@ namespace MarketplaceMVC.Web.Controllers
                 UserProfile userProfile = await userProfileService.GetUserProfileByNameAsync(name);
                 if (userProfile != null)
                 {
-                    var model = Mapper.Map<UserProfile, UserProfileViewModel>(userProfile);
+                    var model = Mapper.Map<UserProfile, DetailsUserProfileViewModel>(userProfile);
                     return View(model);
                 }
             }

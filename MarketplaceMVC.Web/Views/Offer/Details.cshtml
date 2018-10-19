@@ -25,10 +25,10 @@
     <div class="col-lg-3">
         <div class="card-custom description-card mb-3">
             <div class="text-center mb-2">
-                <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 64px" alt="Alternate Tex" />
+                <img class="rounded-circle" src="~/Content/Images/Avatars/@Model.User.Avatar96" />
             </div>
             <div class="text-center font-weight-bold mb-2">
-                <a href="@Url.Action("Details", "UserProfile", new { name = Model.User.Name })">Blast</a>
+                <a href="@Url.Action("Details", "UserProfile", new { name = Model.User.Name })">@Model.User.Name</a>
             </div>
             <div class="text-center mb-2">
                 <button id="contact" class="btn btn-message"><i class="fas fa-envelope"></i> Написать</button>

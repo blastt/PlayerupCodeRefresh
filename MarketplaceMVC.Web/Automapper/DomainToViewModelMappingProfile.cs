@@ -51,12 +51,18 @@ namespace MarketplaceMVC.Web.Automapper
                 .ForMember(o => o.ShortUrl, map => map.MapFrom(vm => GetSplitedUrl(vm.Url, '/', 4)))
                 .ForPath(o => o.Game, map => map.MapFrom(vm => vm.Game.Name))
                 .ForPath(o => o.User.Id, map => map.MapFrom(vm => vm.UserProfile.Id))
+                .ForPath(o => o.User.Avatar96, map => map.MapFrom(vm => vm.UserProfile.Avatar96))
                 .ForPath(o => o.User.Name, map => map.MapFrom(vm => vm.UserProfile.Name));
 
 
 
             CreateMap<UserProfile, UserProfileViewModel>()
                .ForMember(o => o.Id, map => map.MapFrom(vm => vm.Id));
+
+            CreateMap<UserProfile, DetailsUserProfileViewModel>()
+                .ForMember(o => o.Id, map => map.MapFrom(vm => vm.Id))
+                .ForMember(o => o.Name, map => map.MapFrom(vm => vm.Name))
+               .ForMember(o => o.Avatar96, map => map.MapFrom(vm => vm.Avatar96));
         }
     }
 }

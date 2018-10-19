@@ -70,8 +70,8 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
                         privateDialog.Messages.Add(message);
                         await messageService.SaveMessageAsync();
 
-                        messageHub.AddDialog(fromUser.Name, privateDialog.Id);
-                        messageHub.AddDialog(toUser.Name, privateDialog.Id);
+                        messageHub.AddDialog(fromUser.Name, privateDialog.Id, fromUser.Avatar32, fromUser.Avatar32);
+                        messageHub.AddDialog(toUser.Name, privateDialog.Id, toUser.Avatar32, toUser.Name);
                         //_hubContext.Clients.User(fromUser.Name).addDialog(toUser.Id, toUser.Name, privateDialog.Id);
                         //_hubContext.Clients.User(toUser.Name).addDialog(fromUser.Id, fromUser.Name, privateDialog.Id);
 
@@ -94,11 +94,11 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
                     var lastMessage = privateDialog.Messages.LastOrDefault();
                     if (lastMessage != null)
                     {
-                        messageHub.UpdateMessageInDialog(messageInDialogCount, lastMessage.MessageBody, lastMessage.CreatedDate.ToShortDateString(), privateDialog.Id,toUser.Name, toUser.Name, fromUser.Name);
+                        messageHub.UpdateMessageInDialog(messageInDialogCount, lastMessage.MessageBody, lastMessage.CreatedDate.ToShortDateString(), privateDialog.Id,toUser.Name, toUser.Avatar32, fromUser.Name);
                         //_hubContext.Clients.User(toUser.Name).updateMessageInDialog(toUser.Name, fromUser.Id, fromUser.Name, messageInDialogCount, lastMessage.MessageBody, lastMessage.CreatedDate.ToShortDateString(), privateDialog.Id);
                     }
 
-                    messageHub.AddMessage(toUser.Name, fromUser.Name, message.MessageBody, message.CreatedDate.ToString(), fromUser.Avatar64);
+                    messageHub.AddMessage(toUser.Name, fromUser.Name, message.MessageBody, message.CreatedDate.ToString(), fromUser.Avatar32);
 
                     //_hubContext.Clients.User(senderName).addMessage(receiverName, senderName, messageBody, date, senderImage);
                     //_hubContext.Clients.User(receiverName).addMessage(receiverName, senderName, messageBody, date, senderImage);
@@ -108,6 +108,19 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
             }
 
             return Json(new { success = false, responseText = "Ошибка при отправке сообщения. Повторите попытку" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public int GetUnreadDialogsCount()
+        {
+            int currentUserId = User.Identity.GetUserId<int>();
+            int result = 0;
+            int dialogsCount = dialogService.UnreadDialogsForUserCount(currentUserId);
+            if (dialogsCount != 0)
+            {
+                result = dialogsCount;
+            }
+
+            return result;
         }
     }
 }

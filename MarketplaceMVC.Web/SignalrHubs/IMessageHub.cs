@@ -10,7 +10,7 @@ namespace MarketplaceMVC.Web.SignalrHubs
         void UpdateMessage(int messagesCounter, string userId);
         void UpdateMessageInDialog(int messagesCounter, string lastMessage, string date, int dialogId, string userName, string companionId, string companionName);
         void AddMessage(string receiverName, string senderName, string messageBody, string date, string senderImage);
-        void AddDialog(string userName, int dialogId);
+        void AddDialog(string userName, int dialogId, string companionAvatar, string companionName);
 
     }
 }

@@ -32,26 +32,66 @@
 
             <tr data-href="@Url.Action("Details","Dialog", new { id = dialog.Id })" id="message-row-@dialog.Id" class="@clsBold">
 
-                <td class="clickable sender-table  position-relative" id="dialog-name" data-id="@dialog.Id">
-                    @if (dialog.CountOfNewMessages != 0)
-                    {
-                        <div class="messagess-count message-count-block-pos" id="dialog-block-counter">
-                            @dialog.CountOfNewMessages
+                <td class="clickable sender-table  position-relative" id="dialog-name">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img class="rounded-circle avatar-48 mr-2" src="~/Content/Images/Avatars/@dialog.Companion.Avatar32" alt="Alternate Text" />
+                            
                         </div>
-                    }
+                        <div class="col-sm-10" id="div-message-counter">
+                            
+                            @dialog.Companion.Name
+                            
+                                @if (dialog.CountOfNewMessages != 0)
+                                {
+                            <span class="dialog-message-counter">
+                                @dialog.CountOfNewMessages
+                            </span>
+                                }
+                            
+                            
+                        </div>
+                    </div>
 
-                    <img class="rounded-circle avatar-48 mr-2" src="~/Content/Images/Avatars/@dialog.Companion.Avatar32" alt="Alternate Text" />
-
-                    @dialog.Companion.Name
+                    
+                    
                 </td>
-                <td class="clickable" id="dialog-text" data-id="@dialog.Id" style=" max-width: 100px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap; "><span id="message-text" class="wqe" style="">@dialog.Messages.LastOrDefault().MessageBody</span></td>
+                <td class="clickable" id="dialog-text" style=" max-width: 100px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap; "><span id="message-text" class="wqe" style="">@dialog.Messages.LastOrDefault().MessageBody</span></td>
 
-                <td class="clickable date-table" id="dialog-date" data-id="@dialog.Id" title="@dialog.Messages.LastOrDefault().CreatedDate.ToShortTimeString()">@dialog.Messages.LastOrDefault().CreatedDate.ToShortDateString()</td>
+                <td class="clickable date-table" id="dialog-date" title="@dialog.Messages.LastOrDefault().CreatedDate.ToShortTimeString()">@dialog.Messages.LastOrDefault().CreatedDate.ToShortDateString()</td>
             </tr>
 
         }
     </table>
 </div>
+
+<table style="display:none">
+    <tr id="dialog-block" data-href="#" style="display:none" class="warning-row">
+        <td class="clickable sender-table" id="dialog-name">
+            <div class="row">
+                <div class="col-sm-2">
+                    <img id="dialog-block-img" class="rounded-circle avatar-48 mr-2" src="" alt="Alternate Text" />
+
+                </div>
+                <div class="col-sm-10" id="div-message-counter">
+                    <span id="dialog-companion-name">
+                        Name
+                    </span>
+                    
+
+                    <span class="dialog-message-counter">
+                        CountOfNewMessages
+                    </span>
+                    
+
+
+                </div>
+            </div>
+        </td>
+        <td class="clickable" id="dialog-text" style=" max-width: 100px;overflow: hidden;text-overflow: ellipsis; white-space: nowrap; "><span id="message-text" class="wqe" style="">MessageBody</span></td>
+        <td class="clickable date-table" id="dialog-date" title="date">date</td>
+    </tr>
+</table>
 
 @section scripts
 {

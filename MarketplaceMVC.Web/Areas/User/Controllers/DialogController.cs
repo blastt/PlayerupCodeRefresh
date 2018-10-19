@@ -30,7 +30,14 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
         {
             int currentUserId = User.Identity.GetUserId<int>();
             var dialogs = await dialogService.GetUserDialogsAsync(currentUserId, i => i.Companion, i => i.Creator, i => i.Messages);
-            var modelDialogs = Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
+            var modelDialogs = new List<DialogViewModel>(); Mapper.Map<IEnumerable<Dialog>, IEnumerable<DialogViewModel>>(dialogs);
+
+            foreach (var dialog in dialogs)
+            {               
+                var dialogModel = Mapper.Map<Dialog, DialogViewModel>(dialog);
+                dialogModel.CountOfNewMessages = dialog.Messages.Count(d => d.SenderId != currentUserId && !d.ToViewed);
+                modelDialogs.Add(dialogModel);                                
+            }
             var model = new DialogListViewModel()
             {
                 Dialogs = modelDialogs
@@ -65,12 +72,12 @@ namespace MarketplaceMVC.Web.Areas.User.Controllers
                     if (dialog.CompanionId == currentUserId)
                     {
                         dialogWithUserId = dialog.CreatorId;
-                        dialogWithUserImage = dialog.Creator.Avatar64;
+                        dialogWithUserImage = dialog.Creator.Avatar32;
                     }
                     else if (dialog.CreatorId == currentUserId)
                     {
                         dialogWithUserId = dialog.CompanionId;
-                        dialogWithUserImage = dialog.Companion.Avatar64;
+                        dialogWithUserImage = dialog.Companion.Avatar32;
                     }
 
                     if (dialogWithUserId == 0)

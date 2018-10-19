@@ -19,9 +19,9 @@ namespace MarketplaceMVC.Web.SignalrHubs
             context.Clients.User(userId).updateMessage(messagesCounter);
         }
 
-        public void UpdateMessageInDialog(int messagesCounter, string lastMessage, string date, int dialogId, string userName, string companionId, string companionName)
+        public void UpdateMessageInDialog(int messagesCounter, string lastMessage, string date, int dialogId, string userName, string companionAvatar, string companionName)
         {
-            context.Clients.User(userName).updateMessageInDialog(companionId, companionName, messagesCounter, lastMessage, date, dialogId);
+            context.Clients.User(userName).updateMessageInDialog(companionAvatar, companionName, messagesCounter, lastMessage, date, dialogId);
         }
 
         public void AddMessage(string receiverName, string senderName, string messageBody, string date, string senderImage)
@@ -31,9 +31,9 @@ namespace MarketplaceMVC.Web.SignalrHubs
 
         }
 
-        public void AddDialog(string userName, int dialogId)
+        public void AddDialog(string userName, int dialogId, string companionAvatar, string companionName)
         {
-            context.Clients.User(userName).addDialog(dialogId);
+            context.Clients.User(userName).addDialog(dialogId, companionAvatar, companionName);
 
             //_hubContext.Clients.User(fromUser.Name).addDialog(toUser.Id, toUser.Name, privateDialog.Id);// hub
             //_hubContext.Clients.User(toUser.Name).addDialog(fromUser.Id, fromUser.Name, privateDialog.Id);// hub

@@ -180,9 +180,9 @@ namespace MarketplaceMVC.Web.Controllers
                 }
                 var userProfile = new UserProfile();
                 var user = new User { UserName = model.Login, Email = model.Email, UserProfile = userProfile };
-                string urlPath32 = Url.Content("~/Content/Images/Avatars/Default32.png");
-                string urlPath48 = Url.Content("~/Content/Images/Avatars/Default48.png");
-                string urlPath96 = Url.Content("~/Content/Images/Avatars/Default96.png");
+                string urlPath32 = "Default32.png";
+                string urlPath48 = "Default48.png";
+                string urlPath96 = "Default96.png";
                 userProfile.Id = user.Id;
                 userProfile.Name = user.UserName;
                 userProfile.Avatar32 = urlPath32;

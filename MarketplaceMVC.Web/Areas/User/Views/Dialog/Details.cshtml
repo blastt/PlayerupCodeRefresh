@@ -29,7 +29,7 @@
                         <div class="message-block">
                             <div class="row">
                                 <div class="col-lg-1">
-                                    <img id="message-block-img" class="rounded-circle avatar-48" src="~/Content/Images/Avatars/@message.SenderImage" alt="Alternate Text" />
+                                    <img id="message-block-img" class="rounded-circle" src="~/Content/Images/Avatars/@message.SenderImage" alt="Alternate Text" />
 
                                 </div>
                                 <div class="col-lg-11">
@@ -80,7 +80,35 @@
         </div>
     </div>
 </div>
+<div class="message-block" id="message-block-element" style="display:none">
+    <div class="row">
+        <div class="col-lg-1">
+            <img id="message-block-img" class="rounded-circle" src="source" alt="Alternate Text" />
 
+        </div>
+        <div class="col-lg-11">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span id="sender-name" style="font-size: 14px; font-weight: 700; line-height: 20px" class="mr-2">
+                        name
+                    </span>
+                    <span id="created-date" style="font-size: 14px; font-weight: 400; line-height: 20px; color: rgba(0, 0, 0, 0.30)">
+                        date
+                    </span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <span id="message-body" style="font-size: 16px; word-wrap: break-word">
+                        message
+                    </span>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts
 {
@@ -89,7 +117,7 @@
         function SubmitSendForm() {
 
             if ($('#messageBody').val().trim() !== '') {
-                alert("");
+
                 $('form#send-form').submit();
             }
             return false;

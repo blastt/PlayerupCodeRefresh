@@ -819,3 +819,20 @@ ul.ul-auth li {
     padding: 10px;
     background-color: whitesmoke
 }
+
+.warning-row{
+    font-weight: 700
+}
+
+.dialog-message-counter {
+    left: 95%;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 10px;
+    text-align: center;
+    color: white;
+    border-radius: 20px;
+    background-color: #058cc6;
+    position: absolute;
+}

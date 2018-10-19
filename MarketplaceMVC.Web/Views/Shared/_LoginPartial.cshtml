@@ -6,53 +6,61 @@
         @Html.AntiForgeryToken()
 
 
-        
 
 
-<ul class="nav navbar-nav navbar-right">
-    <li class="nav-item position-relative" id="orders">
-        <a href="@Url.Action("OrderBuy", "Order",new { area = "" })" class="nav-link">
-            <div class="top-counter">
-                9+
-            </div>
-            <i class="fas fa-bell" style="font-size: 24px"></i>
-        </a>
-    </li>
-    <li class="nav-item position-relative" id="messagess">
-        <a href="@Url.Action("Inbox", "Message",new { area = "" })" class="nav-link">
-            <div class="top-counter">
-                3
-            </div>
-            <i class="fas fa-comment-dots" style="font-size: 24px"></i>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="#">@Html.Action("Balance", "UserProfile",new { area="" })</a>
 
-    </li>
-    <li class="nav-item top-avatar">
-        <a href="@Url.Action("Inbox", "Message",new { area="" })">
-            <img alt="Аватар" class="rounded-circle" src="~/Content/Images/Avatars/@Html.Action("Photo", "UserProfile" , new {area="", id = User.Identity.GetUserId<int>() })" />
-        </a>
-    </li>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item position-relative" id="orders">
+                <a href="@Url.Action("OrderBuy", "Order",new { area = "" })" class="nav-link">
+                    <div class="top-counter">
+                        9+
+                    </div>
+                    <i class="fas fa-bell" style="font-size: 24px"></i>
+                </a>
+            </li>
+            <li class="nav-item position-relative" id="messages">
+                <a href="@Url.Action("Inbox", "Message",new { area = "" })" class="nav-link">
+                    @{
+                        var messagessCount = Html.Action("GetUnreadDialogsCount", "Message", new { area="User" });
+                        if (messagessCount.ToString() != "0")
+                        {
+                            
+                            <div class="top-counter">
+                                @messagessCount
+                            </div>
+                        }
+                    }
 
-    <li class="nav-item dropdown">
-        <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" id="download" aria-expanded="true" aria-atomic="true">
-            @User.Identity.Name
-            <span class="caret"></span>
-        </a>
-        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 45px, 0px); top: 0px; left: 0px; will-change: transform;">
-            @Html.ActionLink("Сообщения", "Inbox", "Dialog", new { area = "User" }, new { @class = "dropdown-item" })
-            @Html.ActionLink("Предложения", "Active", "Offer", new { area = "User" }, new { @class = "dropdown-item" })
-            @Html.ActionLink("Заказы", "OrderBuy", "Order", new { area = "User" }, new { @class = "dropdown-item" })
-            @Html.ActionLink("Отзывы", "All", "Feedback", new { area = "User" }, new { @class = "dropdown-item" })
-            @Html.ActionLink("Настройки", "Settings", "Account", new { area = "User" }, new { @class = "dropdown-item" })
+                    <i class="fas fa-comment-dots" style="font-size: 24px"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">@Html.Action("Balance", "UserProfile", new { area = "" })</a>
 
-            @Html.ActionLink("Фото", "Upload", "UserProfile", new { area = "" }, new { @class = "dropdown-item" })
-            <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Выйти</a>
-        </div>
-    </li>
-</ul>
+            </li>
+            <li class="nav-item top-avatar">
+                <a href="@Url.Action("Inbox", "Message",new { area="" })">
+                    <img alt="Аватар" class="rounded-circle" src="~/Content/Images/Avatars/@Html.Action("Photo", "UserProfile" , new {area="", id = User.Identity.GetUserId<int>() })" />
+                </a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#" id="download" aria-expanded="true" aria-atomic="true">
+                    @User.Identity.Name
+                    <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 45px, 0px); top: 0px; left: 0px; will-change: transform;">
+                    @Html.ActionLink("Сообщения", "Inbox", "Dialog", new { area = "User" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Предложения", "Active", "Offer", new { area = "User" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Заказы", "OrderBuy", "Order", new { area = "User" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Отзывы", "All", "Feedback", new { area = "User" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink("Настройки", "Settings", "Account", new { area = "User" }, new { @class = "dropdown-item" })
+
+                    @Html.ActionLink("Фото", "Upload", "UserProfile", new { area = "" }, new { @class = "dropdown-item" })
+                    <a class="dropdown-item" href="javascript:document.getElementById('logoutForm').submit()">Выйти</a>
+                </div>
+            </li>
+        </ul>
     }
 }
 else

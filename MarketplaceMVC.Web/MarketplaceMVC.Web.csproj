@@ -320,6 +320,7 @@
     <Compile Include="HtmlHelpers\PagingHelpers.cs" />
     <Compile Include="Models\AccountInfo\AccountInfoViewModel.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Checkout\CashInViewModel.cs" />
     <Compile Include="Models\Checkout\CheckoutViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Offer\CreateOfferViewModel.cs" />
@@ -329,6 +330,7 @@
     <Compile Include="Models\Offer\SearchOfferViewModel.cs" />
     <Compile Include="Models\Order\OrderViewModel.cs" />
     <Compile Include="Models\PageInfoViewModel.cs" />
+    <Compile Include="Models\UserProfile\DetailsUserProfileViewModel.cs" />
     <Compile Include="Models\UserProfile\UserProfileViewModel.cs" />
     <Compile Include="Models\Withdraw\CreateWithdrawViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -81,7 +81,7 @@ namespace MarketplaceMVC.Web.Controllers
             {
                 var currentUserId = User.Identity.GetUserId<int>();
                 var user = userProfileService.GetUserProfile(u => u.Id == currentUserId, i => i.User);
-                var mainCup = userProfileService.GetUserProfileByName("palyerup");
+                var mainCup = userProfileService.GetUserProfileByName("playerup");
                 if (user != null && mainCup != null && user.Balance >= model.OrderSum)
                 {
                     //var amount = Decimal.Parse(Request.Form["ik_am"]);
@@ -202,6 +202,20 @@ namespace MarketplaceMVC.Web.Controllers
         {
             string userId = User.Identity.GetUserId();
             return View((object)userId);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CashIn(CashInViewModel model)
+        {
+            int currentUserId = User.Identity.GetUserId<int>();
+            if (ModelState.IsValid)
+            {
+                var userProfile = await userProfileService.GetUserProfileByIdAsync(currentUserId);
+                userProfile.Balance += model.Price;
+                await userProfileService.SaveUserProfileAsync();
+                return View("Success");
+            }
+            return View("Error");
         }
 
 

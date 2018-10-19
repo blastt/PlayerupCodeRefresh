@@ -1,4 +1,4 @@
-﻿
+﻿@model MarketplaceMVC.Web.Models.UserProfile.DetailsUserProfileViewModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,10 +7,10 @@
     <div class="col-lg-4">
         <div class="card-custom">
             <div class="text-center mb-2">
-                <img class="rounded-circle" src="~/Content/Images/I80W1Q0.png" style="width: 96px" alt="Alternate Tex" />
+                <img class="rounded-circle" src="~/Content/Images/Avatars/@Model.Avatar96" style="width: 96px" alt="Alternate Tex" />
             </div>
             <div class="text-center font-weight-bold">
-                Blast
+                @Model.Name
             </div>
             <div class="text-center">
                 <a class="btn btn-message" href="#"><i class="fas fa-envelope"></i> Написать</a>
