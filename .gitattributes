@@ -34,7 +34,6 @@
 #*.modelproj merge=binary
 #*.sqlproj   merge=binary
 #*.wwaproj   merge=binary
-#*.MarketplaceMVC.Web/Scripts/bootstrap.bundle.js linguist-vendored=false
 
 ###############################################################################
 # behavior for image files
