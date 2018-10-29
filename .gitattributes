@@ -62,4 +62,4 @@
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
 
-PlayerupCodeRefresh/MarketplaceMVC.Web/Scripts/* linguist-vendored
+blastt/PlayerupCodeRefresh/MarketplaceMVC.Web/Scripts/* linguist-vendored
