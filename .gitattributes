@@ -43,7 +43,6 @@
 #*.jpg   binary
 #*.png   binary
 #*.gif   binary
-*.rb linguist-language=Java
 
 ###############################################################################
 # diff behavior for common document formats
